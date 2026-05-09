@@ -85,6 +85,47 @@ const AdminHeroEditor = () => {
         </div>
       ))}
 
+      <div className="rounded-lg border border-primary/20 bg-primary/5 p-4 space-y-3">
+        <h3 className="font-display text-base font-bold text-foreground">Share / Social Preview Image</h3>
+        <p className="text-xs text-muted-foreground">This image appears when someone shares the website on WhatsApp, iMessage, Instagram, etc. Use a portrait or a strong single photo — ideally square or 1200×630px.</p>
+        {values["og_image"] && (
+          <img src={values["og_image"]} alt="Share preview" className="w-48 h-32 object-cover rounded-md border border-border" />
+        )}
+        <div className="flex gap-2">
+          <MediaPickerModal onSelect={async (url) => {
+            try {
+              await upsert.mutateAsync({ section: "seo", key: "og_image", value: url });
+              setValues({ ...values, og_image: url });
+              toast.success("Share image updated");
+            } catch {
+              toast.error("Failed to save");
+            }
+          }}>
+            <Button type="button" variant="outline" className="shrink-0 bg-background">
+              Choose from Library
+            </Button>
+          </MediaPickerModal>
+          <Input
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            onChange={async (e) => {
+              const file = e.target.files?.[0];
+              if (!file) return;
+              try {
+                const url = await upload(file, `seo/og-image.${file.name.split(".").pop()}`);
+                await upsert.mutateAsync({ section: "seo", key: "og_image", value: url });
+                setValues({ ...values, og_image: url });
+                toast.success("Share image uploaded");
+              } catch {
+                toast.error("Upload failed");
+              }
+            }}
+            disabled={uploading}
+            className="bg-card border-border text-foreground w-full"
+          />
+        </div>
+      </div>
+
       <div className="space-y-2">
         <Label className="text-muted-foreground">Showreel URL (YouTube or Vimeo — leave blank to hide the section)</Label>
         <div className="flex gap-2">

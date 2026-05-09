@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
+import { useContentValue } from "@/hooks/useSiteContent";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -21,10 +22,13 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import MobileBookCTA from "@/components/MobileBookCTA";
 
+const SITE_URL = "https://oyange-photography.vercel.app";
+
 const Index = () => {
   useSmoothScroll();
   const [loaded, setLoaded] = useState(false);
   const handleLoaded = useCallback(() => setLoaded(true), []);
+  const ogImage = useContentValue("seo", "og_image", `${SITE_URL}/og-image.jpg`);
 
   return (
     <>
@@ -34,6 +38,10 @@ const Index = () => {
         <meta property="og:title" content="Oyange Photography | Premium Motion & Stills" />
         <meta property="og:description" content="Professional photography and videography portfolio showcasing premium weddings, commercial work, and portraits." />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content={ogImage} />
       </Helmet>
       <PageLoader onComplete={handleLoaded} />
       
