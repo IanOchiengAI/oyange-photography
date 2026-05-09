@@ -94,7 +94,7 @@ const AdminHeroEditor = () => {
         <div className="flex gap-2">
           <MediaPickerModal onSelect={async (url) => {
             try {
-              await upsert.mutateAsync({ section: "seo", key: "og_image", value: url });
+              await upsert.mutateAsync({ section: "hero", key: "og_image", value: url });
               setValues({ ...values, og_image: url });
               toast.success("Share image updated");
             } catch {
@@ -113,7 +113,7 @@ const AdminHeroEditor = () => {
               if (!file) return;
               try {
                 const url = await upload(file, `seo/og-image.${file.name.split(".").pop()}`);
-                await upsert.mutateAsync({ section: "seo", key: "og_image", value: url });
+                await upsert.mutateAsync({ section: "hero", key: "og_image", value: url });
                 setValues({ ...values, og_image: url });
                 toast.success("Share image uploaded");
               } catch {

@@ -28,7 +28,7 @@ const Index = () => {
   useSmoothScroll();
   const [loaded, setLoaded] = useState(false);
   const handleLoaded = useCallback(() => setLoaded(true), []);
-  const ogImage = useContentValue("seo", "og_image", `${SITE_URL}/og-image.jpg`);
+  const ogImage = useContentValue("hero", "og_image", `${SITE_URL}/og-image.jpg`);
 
   return (
     <>
