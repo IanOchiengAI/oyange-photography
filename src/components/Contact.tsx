@@ -189,13 +189,11 @@ const Contact = () => {
                     className={`${inputClass("project")} bg-transparent appearance-none`}
                   >
                     <option value="" disabled className="bg-background text-muted-foreground">Select a service...</option>
-                    <option value="Wedding" className="bg-background">Wedding</option>
-                    <option value="Portrait" className="bg-background">Portrait</option>
-                    <option value="Commercial" className="bg-background">Commercial</option>
-                    <option value="Fashion" className="bg-background">Fashion</option>
-                    <option value="Product" className="bg-background">Product</option>
-                    <option value="Film & Video" className="bg-background">Film & Video</option>
-                    <option value="Corporate" className="bg-background">Corporate</option>
+                    <option value="Portraits" className="bg-background">Portraits</option>
+                    <option value="Couples" className="bg-background">Couples</option>
+                    <option value="Graduation" className="bg-background">Graduation</option>
+                    <option value="Events" className="bg-background">Events</option>
+                    <option value="Hikes & Safaris" className="bg-background">Hikes & Safaris</option>
                     <option value="Other" className="bg-background">Other</option>
                   </select>
                 </div>

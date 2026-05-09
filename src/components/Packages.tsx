@@ -4,39 +4,32 @@ import { usePackages } from "@/hooks/usePortfolio";
 
 const defaultPackages = [
   {
-    name: "Essential",
-    price_label: "From KSh 15,000",
-    features: ["2-hour session", "30 edited photos", "Online gallery", "1 outfit change"],
+    name: "Outdoors",
+    price_label: "From KShs 5,000",
+    features: ["2-hour session", "20 edited photos", "Online gallery"],
     highlighted: false,
   },
   {
-    name: "Premium",
-    price_label: "From KSh 35,000",
-    features: ["4-hour session", "80 edited photos", "Online gallery", "3 outfit changes", "2 locations", "Behind-the-scenes reel"],
+    name: "Events",
+    price_label: "From KShs 6,000",
+    features: ["Full event coverage", "Nicely edited photos", "Online gallery"],
+    highlighted: false,
+  },
+  {
+    name: "Hikes & Safaris",
+    price_label: "From KShs 12,000",
+    features: ["Full-day coverage", "Unlimited photos", "Nicely edited photos", "Cinematic reel", "Online gallery"],
     highlighted: true,
-  },
-  {
-    name: "Signature",
-    price_label: "From KSh 65,000",
-    features: ["Full-day coverage", "200+ edited photos", "Online gallery", "Unlimited outfits", "Multiple locations", "Short film", "Fine art prints"],
-    highlighted: false,
-  },
-  {
-    name: "Corporate",
-    price_label: "Custom Quote",
-    features: ["Custom coverage duration", "Unlimited edited photos", "Online gallery", "Multiple locations", "Custom video content", "Fine art prints", "Dedicated account manager"],
-    highlighted: false,
   },
 ];
 
 const comparisonFeatures = [
-  { name: "Session Duration", essential: "2 hours", premium: "4 hours", signature: "Full-day", corporate: "Custom" },
-  { name: "Edited Photos", essential: "30", premium: "80", signature: "200+", corporate: "Custom" },
-  { name: "Online Gallery", essential: true, premium: true, signature: true, corporate: true },
-  { name: "Outfit Changes", essential: "1", premium: "3", signature: "Unlimited", corporate: "Custom" },
-  { name: "Locations", essential: "1", premium: "2", signature: "Multiple", corporate: "Multiple" },
-  { name: "Video Content", essential: false, premium: "BTS Reel", signature: "Short Film", corporate: "Custom" },
-  { name: "Fine Art Prints", essential: false, premium: false, signature: true, corporate: "Custom" },
+  { name: "Session Duration", outdoors: "2 hours", events: "Full event", safaris: "Full day" },
+  { name: "Photos Delivered", outdoors: "20", events: "Custom", safaris: "Unlimited" },
+  { name: "Edited Photos", outdoors: true, events: true, safaris: true },
+  { name: "Online Gallery", outdoors: true, events: true, safaris: true },
+  { name: "Cinematic Reel", outdoors: false, events: false, safaris: true },
+  { name: "Day Coverage", outdoors: false, events: true, safaris: true },
 ];
 
 const Packages = () => {
@@ -59,7 +52,7 @@ const Packages = () => {
         <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground">Our Packages</h2>
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {packages.map((pkg, i) => (
           <motion.div
             key={pkg.name}
@@ -129,10 +122,9 @@ const Packages = () => {
               <thead>
                 <tr className="bg-primary/5 border-b border-white/10">
                   <th className="p-6 font-display text-lg font-bold text-foreground">Features</th>
-                  <th className="p-6 font-display text-lg font-bold text-foreground">Essential</th>
-                  <th className="p-6 font-display text-lg font-bold text-foreground text-primary">Premium</th>
-                  <th className="p-6 font-display text-lg font-bold text-foreground">Signature</th>
-                  <th className="p-6 font-display text-lg font-bold text-foreground">Corporate</th>
+                  <th className="p-6 font-display text-lg font-bold text-foreground">Outdoors</th>
+                  <th className="p-6 font-display text-lg font-bold text-primary">Events</th>
+                  <th className="p-6 font-display text-lg font-bold text-foreground">Hikes & Safaris</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
@@ -140,30 +132,16 @@ const Packages = () => {
                   <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
                     <td className="p-6 font-body text-sm font-medium text-foreground/80">{feature.name}</td>
                     <td className="p-6 font-body text-sm text-muted-foreground">
-                      {typeof feature.essential === 'boolean' ? (feature.essential ? <Check className="w-4 h-4 text-primary" /> : "—") : feature.essential}
+                      {typeof feature.outdoors === 'boolean' ? (feature.outdoors ? <Check className="w-4 h-4 text-primary" /> : "—") : feature.outdoors}
                     </td>
                     <td className="p-6 font-body text-sm text-foreground">
-                      {typeof feature.premium === 'boolean' ? (feature.premium ? <Check className="w-4 h-4 text-primary" /> : "—") : feature.premium}
+                      {typeof feature.events === 'boolean' ? (feature.events ? <Check className="w-4 h-4 text-primary" /> : "—") : feature.events}
                     </td>
                     <td className="p-6 font-body text-sm text-muted-foreground">
-                      {typeof feature.signature === 'boolean' ? (feature.signature ? <Check className="w-4 h-4 text-primary" /> : "—") : feature.signature}
-                    </td>
-                    <td className="p-6 font-body text-sm text-muted-foreground">
-                      {typeof feature.corporate === 'boolean' ? (feature.corporate ? <Check className="w-4 h-4 text-primary" /> : "—") : feature.corporate}
+                      {typeof feature.safaris === 'boolean' ? (feature.safaris ? <Check className="w-4 h-4 text-primary" /> : "—") : feature.safaris}
                     </td>
                   </tr>
                 ))}
-                <tr className="bg-white/[0.02]">
-                  <td className="p-6"></td>
-                  <td className="p-6"></td>
-                  <td className="p-6"></td>
-                  <td className="p-6"></td>
-                  <td className="p-6">
-                    <button onClick={scrollToContact} className="font-body text-xs font-bold tracking-[0.2em] uppercase px-6 py-3 rounded-full bg-primary text-primary-foreground hover:bg-white hover:text-black transition-colors w-full text-center">
-                      Let's Talk
-                    </button>
-                  </td>
-                </tr>
               </tbody>
             </table>
           </div>

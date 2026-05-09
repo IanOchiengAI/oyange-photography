@@ -31,3 +31,6 @@ dist-ssr
 # Temporary and local dev
 .tmp/
 .supabase/
+
+# Client images — stored in Supabase Storage, not git
+public/Web Images/
