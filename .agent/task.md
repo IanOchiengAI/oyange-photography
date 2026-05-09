@@ -1,0 +1,8 @@
+- [x] FE-001: Remove unused @radix-ui packages from package.json to reduce bloat.
+- [x] FE-002: Implement React.lazy() for AdminDashboard and AdminLogin in App.tsx.
+- [x] FE-003: Create a root-level <ErrorBoundary> component and wrap the app in App.tsx.
+- [x] FE-004: Modify PageLoader logic in Index.tsx to keep content in DOM for SEO.
+- [x] FE-005: Admin Responsiveness fixes.
+- [x] FE-006: Accessibility (A11y) improvements.
+- [x] FE-007: Dead Dependency removal (`next-themes`).
+- [x] OPS-004: Vite manual chunk splitting.

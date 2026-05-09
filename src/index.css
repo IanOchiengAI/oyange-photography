@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 154 60% 3%;
+    --foreground: 36 20% 96%;
+
+    --card: 154 60% 5%;
+    --card-foreground: 36 20% 96%;
+
+    --popover: 154 60% 4%;
+    --popover-foreground: 36 20% 96%;
+
+    --primary: 36 47% 56%;
+    --primary-foreground: 154 60% 3%;
+
+    --secondary: 154 30% 10%;
+    --secondary-foreground: 36 20% 96%;
+
+    --muted: 154 30% 8%;
+    --muted-foreground: 36 10% 65%;
+
+    --accent: 36 47% 56%;
+    --accent-foreground: 154 60% 3%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 154 30% 12%;
+    --input: 154 30% 12%;
+    --ring: 36 47% 56%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 154 60% 4%;
+    --sidebar-foreground: 36 20% 96%;
+    --sidebar-primary: 36 47% 56%;
+    --sidebar-primary-foreground: 154 60% 3%;
+    --sidebar-accent: 154 30% 10%;
+    --sidebar-accent-foreground: 36 20% 96%;
+    --sidebar-border: 154 30% 12%;
+    --sidebar-ring: 36 47% 56%;
+
+    /* Custom tokens */
+    --glass-bg: 0 0% 100% / 0.03;
+    --glass-border: 0 0% 100% / 0.1;
+    --gold-glow: 36 47% 56%;
+    --surface-elevated: 154 60% 6%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* Custom cursor only on precise-pointer (mouse) devices — keeps native cursor for touch/accessibility */
+  @media (pointer: fine) {
+    body:not(.admin-page) {
+      cursor: none;
+    }
+
+    body:not(.admin-page) a,
+    body:not(.admin-page) button,
+    body:not(.admin-page) input,
+    body:not(.admin-page) textarea,
+    body:not(.admin-page) select {
+      cursor: none;
+    }
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+}
+
+@layer components {
+  .glass {
+    background: hsla(var(--glass-bg));
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid hsla(var(--glass-border));
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06),
+      inset 0 1px 1px 0 hsla(var(--foreground) / 0.05);
+  }
+
+  .glass-strong {
+    background: hsla(var(--background) / 0.85);
+    backdrop-filter: blur(48px);
+    -webkit-backdrop-filter: blur(48px);
+    border: 1px solid hsla(var(--glass-border));
+    box-shadow: 
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05),
+      inset 0 1px 1px 0 hsla(var(--foreground) / 0.1);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(36, 50%, 68%));
+  }
+
+  .gold-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .gold-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: hsl(var(--primary));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .gold-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .card-lift {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px -15px hsla(var(--primary) / 0.2);
+  }
+
+  .image-hover {
+    @apply overflow-hidden;
+  }
+  .image-hover img {
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.6s ease;
+  }
+  .image-hover:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.15);
+  }
+}
+
+/* Image protection — blocks casual drag-and-save on portfolio images */
+.protected-image {
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: auto;
+}
+
+/* Smooth scroll via Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Custom animations */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.2; }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

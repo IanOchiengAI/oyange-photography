@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oyange Photography | Premium Photography in Nairobi, Kenya</title>
+    <meta name="description" content="Oyange Photography — Nairobi's premier photography studio. Weddings, portraits, commercial, and fashion photography crafted with cinematic excellence." />
+    <meta name="author" content="Oyange Photography" />
+    <link rel="preload" as="image" href="/src/assets/hero-mid.jpg" type="image/jpeg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
+    <!-- Google Fonts — preconnect first, then stylesheet for non-blocking load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" />
+
+    <!-- Supabase preconnect — eliminates DNS + TLS cold-start on first DB fetch -->
+    <link rel="preconnect" href="https://oioijujspkpwajelkfpa.supabase.co" />
+
+    <meta property="og:title" content="Oyange Photography | Nairobi, Kenya" />
+    <meta property="og:description" content="Premium photography for those who demand excellence. Weddings, portraits, commercial & fashion photography in Nairobi." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://oyangephotography.co.ke" />
+    <meta property="og:image" content="/og-image.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Oyange Photography | Nairobi, Kenya" />
+    <meta name="twitter:description" content="Premium photography for those who demand excellence. Weddings, portraits, commercial & fashion photography." />
+    <meta name="twitter:image" content="/og-image.jpg" />
+    <link rel="canonical" href="https://oyangephotography.co.ke" />
+
+    <!-- Google Analytics 4 — REPLACE G-XXXXXXXXXX with your real Measurement ID from analytics.google.com -->
+    <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://oyangephotography.co.ke/#person",
+          "name": "Oyange",
+          "alternateName": "Oyange Photography",
+          "url": "https://oyangephotography.co.ke",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://oyangephotography.co.ke/og-image.jpg"
+          },
+          "description": "Premium cinematic photographer in Nairobi, Kenya specializing in high-end weddings, editorial portraits, and commercial fashion.",
+          "knowsAbout": ["Photography", "Cinematography", "Lighting Artistry", "Visual Storytelling", "Post-production"],
+          "sameAs": [
+            "https://www.instagram.com/oyange_/",
+            "https://linktr.ee/0yange"
+          ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://oyangephotography.co.ke/#service",
+          "name": "Oyange Photography",
+          "url": "https://oyangephotography.co.ke",
+          "telephone": "+254717393576",
+          "priceRange": "$$$",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Nairobi",
+            "addressRegion": "Nairobi",
+            "addressCountry": "KE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -1.2921,
+            "longitude": 36.8219
+          },
+          "image": "https://oyangephotography.co.ke/og-image.jpg",
+          "memberOf": { "@id": "https://oyangephotography.co.ke/#person" },
+          "serviceType": ["Wedding Photography", "Portrait Photography", "Fashion Photography", "Commercial Photography"]
+        }
+      ]
+    }
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
