@@ -145,7 +145,7 @@ const Navbar = () => {
               className="mt-20 pt-10 border-t border-border/40 flex flex-col gap-4"
             >
               <p className="font-body text-xs tracking-[0.3em] uppercase text-primary">Get in Touch</p>
-              <a href="mailto:hello@oyange.com" className="font-body text-sm text-muted-foreground">hello@oyange.com</a>
+              <a href="mailto:martinaquila5@gmail.com" className="font-body text-sm text-muted-foreground">martinaquila5@gmail.com</a>
               <div className="flex gap-6 mt-2">
                 <a href="#" className="font-body text-xs tracking-widest uppercase text-foreground hover:text-primary transition-colors">Instagram</a>
                 <a href="#" className="font-body text-xs tracking-widest uppercase text-foreground hover:text-primary transition-colors">Twitter</a>

@@ -12,7 +12,7 @@ const Contact = () => {
   const headingLine1 = useContentValue("contact", "heading_line1", "Let's Create");
   const headingLine2 = useContentValue("contact", "heading_line2", "Together");
   const address = useContentValue("contact", "address", "Westlands, Nairobi, Kenya");
-  const email = useContentValue("contact", "email", "hello@oyangephotography.co.ke");
+  const email = useContentValue("contact", "email", "martinaquila5@gmail.com");
   const phone = useContentValue("contact", "phone", "+254 717 393 576");
 
   const [formData, setFormData] = useState({ name: "", email: "", project_type: "", message: "", website: "" });
