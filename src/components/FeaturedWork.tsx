@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion, useAnimationFrame } from "framer-motion";
 import { useFeaturedProjects } from "@/hooks/usePortfolio";
 import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio4 from "@/assets/portfolio-4.jpg";
@@ -12,55 +12,9 @@ const defaultProjects = [
   { image: portfolio6, title: "Ethereal Grace", category: "Fashion", year: "2023" },
 ];
 
-const ProjectItem = ({ project, index, total, scrollYProgress }: { project: any, index: number, total: number, scrollYProgress: any }) => {
-  const xOffset = useTransform(
-    scrollYProgress,
-    [index / total, (index + 1) / total],
-    ["-10%", "10%"]
-  );
-
-  return (
-    <div className="w-screen h-screen flex items-center justify-center px-6 md:px-20 shrink-0">
-      <div className="relative max-w-5xl w-full" data-cursor-view>
-        <div className="rounded-lg overflow-hidden aspect-[16/10] relative group cursor-pointer shadow-2xl">
-          <motion.div
-            style={{ x: xOffset, scale: 1.1 }}
-            whileHover={{ scale: 1.15 }}
-            transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-            className="w-full h-full"
-          >
-            <ProgressiveImage 
-              src={project.image} 
-              alt={project.title} 
-              className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" 
-            />
-          </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-[2px] group-hover:backdrop-blur-0" />
-        </div>
-        <div className="mt-8 flex items-end justify-between">
-          <motion.div
-            initial={{ x: -20, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            <h3 className="font-display text-4xl md:text-7xl font-black text-foreground tracking-tighter leading-none">{project.title}</h3>
-            <div className="flex items-center gap-4 mt-4">
-              <span className="h-[1px] w-12 bg-primary"></span>
-              <p className="font-body text-xs tracking-[0.4em] uppercase text-primary/80">{project.category}</p>
-            </div>
-          </motion.div>
-          <motion.span 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="font-display text-xl font-light text-muted-foreground/30 hidden md:block italic"
-          >
-            {project.year}
-          </motion.span>
-        </div>
-      </div>
-    </div>
-  );
-};
+const CARD_WIDTH = 380;   // px per card
+const CARD_GAP = 24;      // gap between cards
+const SPEED = 0.4;        // px per frame (~24px/s at 60fps)
 
 const FeaturedWork = () => {
   const { data: dbProjects } = useFeaturedProjects();
@@ -68,38 +22,128 @@ const FeaturedWork = () => {
     ? dbProjects.map((p) => ({ image: p.image_url, title: p.title, category: p.category, year: p.year }))
     : defaultProjects;
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
+  // Duplicate for seamless loop
+  const items = [...projects, ...projects, ...projects];
+  const singleSetWidth = projects.length * (CARD_WIDTH + CARD_GAP);
+
+  const trackRef = useRef<HTMLDivElement>(null);
+  const offsetRef = useRef(0);
+  const [paused, setPaused] = useState(false);
+
+  // Auto-scroll animation
+  useAnimationFrame(() => {
+    if (paused) return;
+    offsetRef.current -= SPEED;
+    // Reset seamlessly when one full set has scrolled past
+    if (Math.abs(offsetRef.current) >= singleSetWidth) {
+      offsetRef.current += singleSetWidth;
+    }
+    if (trackRef.current) {
+      trackRef.current.style.transform = `translateX(${offsetRef.current}px)`;
+    }
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", `-${(projects.length - 1) * 100}vw`]);
+  // Touch/swipe support
+  const touchStartX = useRef(0);
+  const touchDeltaRef = useRef(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setPaused(true);
+    touchStartX.current = e.touches[0].clientX;
+    touchDeltaRef.current = 0;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    const delta = e.touches[0].clientX - touchStartX.current;
+    touchDeltaRef.current = delta;
+    if (trackRef.current) {
+      trackRef.current.style.transform = `translateX(${offsetRef.current + delta}px)`;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    offsetRef.current += touchDeltaRef.current;
+    // Normalize offset
+    if (Math.abs(offsetRef.current) >= singleSetWidth) {
+      offsetRef.current += singleSetWidth;
+    }
+    if (offsetRef.current > 0) {
+      offsetRef.current -= singleSetWidth;
+    }
+    setPaused(false);
+  };
 
   return (
-    <section ref={containerRef} className="relative" style={{ height: `${projects.length * 100}vh` }}>
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center">
-        <div className="absolute top-10 left-6 md:left-12 z-10">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="font-body text-xs tracking-[0.3em] uppercase text-primary"
-          >
+    <section className="relative py-24 md:py-32 overflow-hidden">
+      {/* Header */}
+      <div className="px-6 md:px-12 max-w-7xl mx-auto mb-14">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-4">
             Featured Work
-          </motion.p>
-        </div>
-
-        <motion.div className="flex" style={{ x }}>
-          {projects.map((project, i) => (
-            <ProjectItem 
-              key={i} 
-              project={project} 
-              index={i} 
-              total={projects.length} 
-              scrollYProgress={scrollYProgress} 
-            />
-          ))}
+          </p>
+          <div className="h-[1px] w-16 bg-primary/40" />
         </motion.div>
+      </div>
+
+      {/* Carousel track */}
+      <div
+        className="relative"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Left fade */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-40 z-10 pointer-events-none bg-gradient-to-r from-background to-transparent" />
+        {/* Right fade */}
+        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-40 z-10 pointer-events-none bg-gradient-to-l from-background to-transparent" />
+
+        <div
+          ref={trackRef}
+          className="flex will-change-transform"
+          style={{ gap: `${CARD_GAP}px` }}
+        >
+          {items.map((project, i) => (
+            <div
+              key={i}
+              className="group shrink-0 relative"
+              style={{ width: `${CARD_WIDTH}px` }}
+              data-cursor-view
+            >
+              <div className="rounded-lg overflow-hidden aspect-[3/4] relative shadow-2xl">
+                <div className="w-full h-full transition-transform duration-700 ease-out group-hover:scale-105">
+                  <ProgressiveImage
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+
+                {/* Overlay content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="font-display text-2xl font-black text-white tracking-tight leading-none mb-3">
+                    {project.title}
+                  </h3>
+                  <div className="flex items-center gap-3">
+                    <span className="h-[1px] w-8 bg-primary" />
+                    <p className="font-body text-[10px] tracking-[0.4em] uppercase text-primary/90">
+                      {project.category}
+                    </p>
+                    <span className="font-body text-xs text-white/30 ml-auto italic">
+                      {project.year}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -56,7 +56,7 @@ const About = () => {
           <h2 className="font-display text-5xl md:text-7xl font-black text-foreground mb-8 leading-[1.1] tracking-tighter">
             {headingLine1}
             <br />
-            <span className="text-secondary opacity-50 italic font-light">{headingLine2}</span>
+            <span className="text-primary/80 italic font-light">{headingLine2}</span>
           </h2>
 
           <div className="space-y-6 font-body text-foreground/70 text-lg leading-relaxed max-w-xl">

@@ -115,8 +115,40 @@ const Packages = () => {
         <div className="text-center mb-12">
           <h3 className="font-display text-3xl font-bold text-foreground">Compare Packages</h3>
         </div>
-        
-        <div className="overflow-x-auto pb-6">
+
+        {/* Mobile: stacked feature cards */}
+        <div className="md:hidden space-y-3">
+          <div className="grid grid-cols-3 gap-2 px-1 mb-4">
+            <p className="text-center font-display text-xs font-bold text-foreground/70">Outdoors</p>
+            <p className="text-center font-display text-xs font-bold text-primary">Events</p>
+            <p className="text-center font-display text-xs font-bold text-foreground/70">Hikes & Safaris</p>
+          </div>
+          {comparisonFeatures.map((feature, idx) => (
+            <div key={idx} className="glass rounded-xl border border-white/5 px-4 py-3">
+              <p className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-bold mb-3">{feature.name}</p>
+              <div className="grid grid-cols-3 gap-2 text-center">
+                <div className="flex justify-center">
+                  {typeof feature.outdoors === 'boolean'
+                    ? (feature.outdoors ? <Check className="w-4 h-4 text-primary" /> : <span className="font-body text-sm text-muted-foreground">—</span>)
+                    : <span className="font-body text-xs text-muted-foreground">{feature.outdoors}</span>}
+                </div>
+                <div className="flex justify-center">
+                  {typeof feature.events === 'boolean'
+                    ? (feature.events ? <Check className="w-4 h-4 text-primary" /> : <span className="font-body text-sm text-muted-foreground">—</span>)
+                    : <span className="font-body text-xs text-foreground">{feature.events}</span>}
+                </div>
+                <div className="flex justify-center">
+                  {typeof feature.safaris === 'boolean'
+                    ? (feature.safaris ? <Check className="w-4 h-4 text-primary" /> : <span className="font-body text-sm text-muted-foreground">—</span>)
+                    : <span className="font-body text-xs text-muted-foreground">{feature.safaris}</span>}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop: full table */}
+        <div className="hidden md:block overflow-x-auto pb-6">
           <div className="min-w-[800px] glass rounded-2xl overflow-hidden">
             <table className="w-full text-left border-collapse">
               <thead>

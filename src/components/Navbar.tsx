@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 
+
 const navLinks = [
   { label: "Home", href: "#hero" },
   { label: "About", href: "#about" },
@@ -48,18 +49,18 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
         {isHome ? (
-          <button 
-            onClick={() => scrollTo("#hero")} 
-            className="font-display text-2xl font-bold tracking-tight text-foreground"
+          <button
+            onClick={() => scrollTo("#hero")}
             aria-label="Oyange Photography - Scroll to top"
+            className="font-display text-xl font-black tracking-wider text-foreground uppercase"
           >
             OYANGE
           </button>
         ) : (
-          <Link 
-            to="/" 
-            className="font-display text-2xl font-bold tracking-tight text-foreground"
+          <Link
+            to="/"
             aria-label="Oyange Photography - Go to home page"
+            className="font-display text-xl font-black tracking-wider text-foreground uppercase"
           >
             OYANGE
           </Link>
