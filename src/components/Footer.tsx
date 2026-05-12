@@ -75,7 +75,7 @@ const Footer = () => {
             </div>
             <div className="mt-8 space-y-1">
               <p className="font-body text-sm text-muted-foreground">Nairobi, Kenya</p>
-              <a href="mailto:hello@oyangephotography.co.ke" className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors">hello@oyangephotography.co.ke</a>
+              <a href="mailto:martinaquila5@gmail.com" className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors">martinaquila5@gmail.com</a>
               <a href="tel:+254717393576" className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
                 <Phone className="w-3 h-3" /> +254 717 393 576
               </a>
