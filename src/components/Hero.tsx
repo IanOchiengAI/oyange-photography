@@ -1,8 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useContentValue } from "@/hooks/useSiteContent";
-import heroBgDefault from "@/assets/hero-bg.jpg";
-import heroMidDefault from "@/assets/hero-mid.jpg";
 import ProgressiveImage from "@/components/ProgressiveImage";
 import { ArrowRight } from "lucide-react";
 
@@ -36,12 +34,18 @@ const Hero = () => {
     <section id="hero" ref={ref} className="relative h-screen overflow-hidden flex items-center justify-center">
       <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
         <div className="absolute inset-0 bg-background/40 z-10" />
-        <ProgressiveImage src={heroMid || heroMidDefault} alt="" className="w-full h-[120%] object-cover" loading="eager" />
+        {heroMid ? (
+          <ProgressiveImage src={heroMid} alt="" className="w-full h-[120%] object-cover" loading="eager" />
+        ) : (
+          <div className="w-full h-[120%] bg-muted/30 animate-pulse-subtle" />
+        )}
       </motion.div>
 
       <motion.div className="absolute inset-0 z-[1]" style={{ y: midY }}>
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent z-10" />
-        <ProgressiveImage src={heroBg || heroBgDefault} alt="" className="w-full h-[115%] object-cover opacity-30" loading="eager" />
+        {(heroBg || heroMid) ? (
+          <ProgressiveImage src={heroBg || heroMid} alt="" className="w-full h-[115%] object-cover opacity-30" loading="eager" />
+        ) : null}
       </motion.div>
 
       <motion.div className="relative z-10 text-center px-6" style={{ y: textY, opacity }}>
