@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
+import { useTestimonials } from "@/hooks/usePortfolio";
 
 
 const navLinks = [
@@ -17,6 +18,11 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
+  // The testimonials section is hidden until real ones exist, so drop its link too.
+  const { data: testimonials } = useTestimonials();
+  const links = testimonials && testimonials.length > 0
+    ? navLinks
+    : navLinks.filter((l) => l.href !== "#testimonials");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -92,7 +98,7 @@ const Navbar = () => {
 
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-10">
-            {navLinks.map((link) => (
+            {links.map((link) => (
               <button
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
@@ -128,7 +134,7 @@ const Navbar = () => {
             className="fixed inset-0 z-[45] bg-background/95 backdrop-blur-2xl flex flex-col justify-center px-8 md:hidden"
           >
             <div className="flex flex-col gap-8 mt-12">
-              {navLinks.map((link) => (
+              {links.map((link) => (
                 <motion.button
                   key={link.href}
                   variants={linkVariants}
@@ -147,8 +153,8 @@ const Navbar = () => {
               <p className="font-body text-xs tracking-[0.3em] uppercase text-primary">Get in Touch</p>
               <a href="mailto:martinaquila5@gmail.com" className="font-body text-sm text-muted-foreground">martinaquila5@gmail.com</a>
               <div className="flex gap-6 mt-2">
-                <a href="#" className="font-body text-xs tracking-widest uppercase text-foreground hover:text-primary transition-colors">Instagram</a>
-                <a href="#" className="font-body text-xs tracking-widest uppercase text-foreground hover:text-primary transition-colors">Twitter</a>
+                <a href="https://www.instagram.com/oyange_/" target="_blank" rel="noopener noreferrer" className="font-body text-xs tracking-widest uppercase text-foreground hover:text-primary transition-colors">Instagram</a>
+                <a href="https://linktr.ee/0yange" target="_blank" rel="noopener noreferrer" className="font-body text-xs tracking-widest uppercase text-foreground hover:text-primary transition-colors">Linktree</a>
               </div>
             </motion.div>
           </motion.div>

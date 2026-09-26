@@ -39,8 +39,8 @@ const Index = () => {
         <meta property="og:description" content="Professional photography and videography portfolio showcasing premium weddings, commercial work, and portraits." />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={ogImage} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+        <meta property="og:image:width" content="512" />
+        <meta property="og:image:height" content="512" />
         <meta name="twitter:image" content={ogImage} />
       </Helmet>
       <PageLoader onComplete={handleLoaded} />

@@ -3,12 +3,6 @@ import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { useTestimonials } from "@/hooks/usePortfolio";
 
-const defaultTestimonials = [
-  { client_name: "Sarah & James", client_title: "Wedding Clients", quote: "Absolutely breathtaking work. Every photo tells the story of our special day perfectly." },
-  { client_name: "Elena Rodriguez", client_title: "Fashion Designer", quote: "The editorial shots exceeded all expectations. True artistry behind the lens." },
-  { client_name: "Marcus Chen", client_title: "CEO, Luxe Brands", quote: "Professional, creative, and incredibly easy to work with. Our brand imagery has never looked better." },
-];
-
 const getInitials = (name: string) => {
   if (!name) return "";
   return name
@@ -22,7 +16,8 @@ const getInitials = (name: string) => {
 
 const Testimonials = () => {
   const { data: dbTestimonials } = useTestimonials();
-  const testimonials = dbTestimonials && dbTestimonials.length > 0 ? dbTestimonials : defaultTestimonials;
+  // No invented fallback quotes: the section only renders real testimonials from the CMS.
+  const testimonials = dbTestimonials ?? [];
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -36,7 +31,7 @@ const Testimonials = () => {
   };
 
   useEffect(() => {
-    if (!isPaused) startInterval();
+    if (!isPaused && testimonials.length > 0) startInterval();
     else if (intervalRef.current) clearInterval(intervalRef.current);
     return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
   }, [testimonials.length, isPaused]);
@@ -46,7 +41,9 @@ const Testimonials = () => {
     startInterval();
   };
 
-  const current = testimonials[activeIndex];
+  if (testimonials.length === 0) return null;
+
+  const current = testimonials[activeIndex % testimonials.length];
 
   return (
     <section id="testimonials" className="py-32 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden relative">
