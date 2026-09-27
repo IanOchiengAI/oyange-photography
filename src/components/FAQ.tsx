@@ -43,7 +43,7 @@ const FAQItem = ({ q, a, isOpen, onClick }: { q: string; a: string; isOpen: bool
       <motion.div
         animate={{ rotate: isOpen ? 45 : 0 }}
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className="shrink-0 w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center"
+        className="shrink-0 w-8 h-8 flex items-center justify-center"
         aria-hidden="true"
       >
         <Plus className="w-4 h-4 text-primary" />
@@ -80,16 +80,8 @@ const FAQ = () => {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="lg:sticky lg:top-32 lg:self-start"
         >
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: true }}
-            className="h-[1px] w-20 bg-primary mb-8 origin-left"
-          />
-          <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-4">Before You Book</p>
-          <h2 className="font-display text-4xl md:text-5xl font-black text-foreground leading-[1.05] tracking-tighter mb-6">
-            Questions<br />
-            <span className="text-primary italic font-light">Answered</span>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground leading-[1.05] mb-6">
+            Questions people ask
           </h2>
           <p className="font-body text-muted-foreground leading-relaxed">
             The things people usually ask first. Don't see your question?{" "}

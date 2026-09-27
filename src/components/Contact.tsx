@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, MapPin, Phone, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { useContentValue } from "@/hooks/useSiteContent";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -9,8 +9,8 @@ const Contact = () => {
   const [focused, setFocused] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
-  const headingLine1 = useContentValue("contact", "heading_line1", "Let's Create");
-  const headingLine2 = useContentValue("contact", "heading_line2", "Together");
+  const headingLine1 = useContentValue("contact", "heading_line1", "Tell me about");
+  const headingLine2 = useContentValue("contact", "heading_line2", "your shoot");
   const address = useContentValue("contact", "address", "Nairobi, Kenya");
   const email = useContentValue("contact", "email", "martinaquila5@gmail.com");
   const phone = useContentValue("contact", "phone", "+254 717 393 576");
@@ -74,49 +74,29 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: true }}
-            className="h-[1px] w-20 bg-primary mb-8 origin-left"
-          />
-          <h2 className="font-display text-5xl md:text-8xl font-black text-foreground mb-12 leading-[0.9] tracking-tighter">
+          <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground mb-6 leading-[1.05]">
             {headingLine1}
             <br />
-            <span className="text-primary italic font-light">{headingLine2}</span>
+            <span className="text-primary">{headingLine2}</span>
           </h2>
-          
-          <div className="space-y-10 mt-16 group">
-            <div className="flex items-start gap-6 transition-transform duration-500 hover:translate-x-2">
-              <div className="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors duration-500">
-                <MapPin className="w-5 h-5 text-primary group-hover:text-black transition-colors duration-500" strokeWidth={1.5} />
-              </div>
-              <div className="pt-2">
-                <p className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-bold mb-1">Based in</p>
-                <p className="font-body text-foreground/80">{address}</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-6 transition-transform duration-500 hover:translate-x-2">
-              <div className="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors duration-500">
-                <Mail className="w-5 h-5 text-primary group-hover:text-black transition-colors duration-500" strokeWidth={1.5} />
-              </div>
-              <div className="pt-2">
-                <p className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-bold mb-1">Email</p>
-                <a href={`mailto:${email}`} className="font-body text-foreground/80 hover:text-primary transition-colors break-all">{email}</a>
-              </div>
-            </div>
+          <p className="font-body text-lg text-muted-foreground leading-relaxed max-w-md mb-12">
+            WhatsApp is the quickest way to reach me. The form works too.
+          </p>
 
-            <div className="flex items-start gap-6 transition-transform duration-500 hover:translate-x-2">
-              <div className="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors duration-500">
-                <Phone className="w-5 h-5 text-primary group-hover:text-black transition-colors duration-500" strokeWidth={1.5} />
-              </div>
-              <div className="pt-2">
-                <p className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-bold mb-1">Phone</p>
-                <a href={`tel:${phone.replace(/\s/g, "")}`} className="font-body text-foreground/80 hover:text-primary transition-colors">{phone}</a>
-              </div>
+          <dl className="divide-y divide-border border-y border-border max-w-md">
+            <div className="py-4 flex justify-between gap-6">
+              <dt className="font-body text-muted-foreground">WhatsApp / phone</dt>
+              <dd><a href={`tel:${phone.replace(/\s/g, "")}`} className="font-body text-foreground hover:text-primary transition-colors">{phone}</a></dd>
             </div>
-          </div>
+            <div className="py-4 flex justify-between gap-6">
+              <dt className="font-body text-muted-foreground">Email</dt>
+              <dd><a href={`mailto:${email}`} className="font-body text-foreground hover:text-primary transition-colors break-all">{email}</a></dd>
+            </div>
+            <div className="py-4 flex justify-between gap-6">
+              <dt className="font-body text-muted-foreground">Based in</dt>
+              <dd className="font-body text-foreground">{address}</dd>
+            </div>
+          </dl>
         </motion.div>
 
         <motion.div
@@ -130,14 +110,14 @@ const Contact = () => {
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="h-full min-h-[400px] flex items-center justify-center glass rounded-3xl border border-white/5"
+              className="h-full min-h-[400px] flex items-center justify-center border-y border-border"
             >
               <div className="text-center p-12">
                 <motion.div
                   initial={{ scale: 0, rotate: -45 }}
                   animate={{ scale: 1, rotate: 0 }}
                   transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-                  className="w-24 h-24 rounded-full bg-primary flex items-center justify-center mx-auto mb-8 shadow-[0_20px_40px_-10px_hsl(var(--primary)/0.5)]"
+                  className="w-20 h-20 rounded-full bg-primary flex items-center justify-center mx-auto mb-8"
                 >
                   <span className="text-black text-4xl">✓</span>
                 </motion.div>
@@ -163,7 +143,7 @@ const Contact = () => {
               </div>
             </motion.div>
           ) : (
-            <div className="glass p-8 md:p-12 rounded-3xl border border-white/5">
+            <div>
               <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
                 {/* Honeypot field - visually hidden */}
                 <div className="absolute opacity-0 -z-10 w-0 h-0 overflow-hidden" aria-hidden="true">
@@ -171,15 +151,15 @@ const Contact = () => {
                   <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" value={formData.website} onChange={(e) => setFormData(p => ({ ...p, website: e.target.value }))} />
                 </div>
                 <div className="col-span-1">
-                  <label htmlFor="contact-name" className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-bold mb-2 block">Your Name</label>
+                  <label htmlFor="contact-name" className="font-body text-sm text-muted-foreground mb-2 block">Your name</label>
                   <input type="text" id="contact-name" required maxLength={100} value={formData.name} onChange={(e) => setFormData(p => ({ ...p, name: e.target.value }))} className={inputClass("name")} onFocus={() => setFocused("name")} onBlur={() => setFocused(null)} />
                 </div>
                 <div className="col-span-1">
-                  <label htmlFor="contact-email" className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-bold mb-2 block">Email Address</label>
+                  <label htmlFor="contact-email" className="font-body text-sm text-muted-foreground mb-2 block">Email</label>
                   <input type="email" id="contact-email" required maxLength={255} value={formData.email} onChange={(e) => setFormData(p => ({ ...p, email: e.target.value }))} className={inputClass("email")} onFocus={() => setFocused("email")} onBlur={() => setFocused(null)} />
                 </div>
                 <div className="md:col-span-2">
-                  <label htmlFor="contact-project" className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-bold mb-2 block">Project Interest</label>
+                  <label htmlFor="contact-project" className="font-body text-sm text-muted-foreground mb-2 block">What kind of shoot?</label>
                   <select
                     id="contact-project"
                     value={formData.project_type}
@@ -199,14 +179,14 @@ const Contact = () => {
                   </select>
                 </div>
                 <div className="md:col-span-2">
-                  <label htmlFor="contact-message" className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-bold mb-2 block">Extra Details</label>
+                  <label htmlFor="contact-message" className="font-body text-sm text-muted-foreground mb-2 block">Anything else? Date, place, ideas</label>
                   <textarea id="contact-message" rows={4} maxLength={2000} value={formData.message} onChange={(e) => setFormData(p => ({ ...p, message: e.target.value }))} className={`${inputClass("message")} resize-none`} onFocus={() => setFocused("message")} onBlur={() => setFocused(null)} />
                 </div>
                 <div className="md:col-span-2">
                   <button 
                     type="submit" 
                     disabled={submitting} 
-                    className="group w-full flex items-center justify-center gap-4 font-body text-xs font-bold tracking-[0.3em] uppercase bg-primary text-black px-10 py-5 rounded-full hover:bg-white hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.2)] transition-all duration-500 disabled:opacity-50 mt-4 shadow-xl"
+                    className="group w-full flex items-center justify-center gap-4 font-body text-sm font-semibold bg-primary text-black px-10 py-5 rounded-full hover:bg-white transition-colors duration-300 disabled:opacity-50 mt-4"
                   >
                     {submitting ? "Sending..." : "Send Message"}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />

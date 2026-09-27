@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Check, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import ProgressiveImage from "@/components/ProgressiveImage";
 import { usePackages } from "@/hooks/usePortfolio";
 
 // From Aquila's own price list (his previous Pixieset site).
@@ -24,12 +25,12 @@ const defaultPackages = [
   },
 ];
 
-const comparisonFeatures = [
-  { name: "Session Length", outdoors: "2 hours", events: "Your event", safaris: "One full day" },
-  { name: "Photos", outdoors: "20", events: "Agreed per event", safaris: "Unlimited" },
-  { name: "Short Reel", outdoors: false, events: false, safaris: true },
-  { name: "Online Gallery", outdoors: true, events: true, safaris: true },
-];
+// Same photos Aquila used for each package on his previous site, where they exist.
+const packageImages: Record<string, string> = {
+  outdoors: "/portfolio/portraits/020.jpg",
+  events: "/portfolio/events/006.jpg",
+  "hikes & safaris": "/portfolio/adventure/007.jpg",
+};
 
 const Packages = () => {
   const { data: dbPackages } = usePackages();
@@ -40,144 +41,60 @@ const Packages = () => {
   };
 
   return (
-    <section id="packages" className="py-32 px-6 md:px-12 max-w-7xl mx-auto">
+    <section id="packages" className="py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="mb-16 text-center"
+        className="mb-14 md:mb-20 max-w-2xl"
       >
-        <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-4">Investment</p>
-        <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground">Packages</h2>
+        <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground mb-5">Packages</h2>
+        <p className="font-body text-lg text-muted-foreground leading-relaxed">
+          Starting prices. Tell me about your shoot and I'll quote you exactly.
+        </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {packages.map((pkg, i) => (
-          <motion.div
-            key={pkg.name}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.15 }}
-            className={`relative rounded-2xl p-8 md:p-10 card-lift transition-all duration-500 ${
-              pkg.highlighted
-                ? "bg-primary/[0.03] border-[1.5px] border-primary shadow-[0_0_40px_-15px_hsl(var(--primary)/0.3)]"
-                : "glass border border-white/5"
-            }`}
-          >
-            {pkg.highlighted && (
-              <motion.div 
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-x-0 -top-[1.5px] h-[1.5px] bg-gradient-to-r from-transparent via-primary to-transparent"
-              />
-            )}
-            {pkg.highlighted && (
-              <span className="absolute -top-4 left-10 bg-primary text-primary-foreground font-body text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full shadow-lg">
-                Full Day
-              </span>
-            )}
-            <h3 className="font-display text-4xl font-black text-foreground tracking-tighter mb-1 mt-2">{pkg.name}</h3>
-            <p className="font-body text-primary text-xl font-bold mb-8">{pkg.price_label}</p>
-            <ul className="space-y-4 mb-10">
-              {pkg.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-3 font-body text-sm text-foreground/80 leading-snug">
-                  <div className="mt-1 bg-primary/20 rounded-full p-0.5">
-                    <Check className="w-3 h-3 text-primary" />
-                  </div>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-            <button
-              onClick={scrollToContact}
-              className={`group w-full flex items-center justify-center gap-3 font-body text-xs font-bold tracking-[0.2em] uppercase px-8 py-4 rounded-full transition-all duration-500 ${
-                pkg.highlighted
-                  ? "bg-primary text-primary-foreground hover:bg-white hover:text-black shadow-xl"
-                  : "border border-white/10 text-foreground hover:bg-white hover:text-black hover:border-white"
-              }`}
+      <div className="grid grid-cols-1 md:grid-cols-3 md:divide-x divide-border border-t border-border">
+        {packages.map((pkg, i) => {
+          const image = packageImages[pkg.name.toLowerCase()];
+          return (
+            <motion.div
+              key={pkg.name}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.12, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col pt-8 pb-12 md:px-8 border-b md:border-b-0 border-border"
             >
-              Reserve Your Date
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-            </button>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Comparison Table */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="mt-24"
-      >
-        <div className="text-center mb-12">
-          <h3 className="font-display text-3xl font-bold text-foreground">Compare Packages</h3>
-        </div>
-
-        {/* Mobile: stacked feature cards */}
-        <div className="md:hidden space-y-3">
-          <div className="grid grid-cols-3 gap-2 px-1 mb-4">
-            <p className="text-center font-display text-xs font-bold text-foreground/70">Outdoors</p>
-            <p className="text-center font-display text-xs font-bold text-foreground/70">Events</p>
-            <p className="text-center font-display text-xs font-bold text-primary">Hikes & Safaris</p>
-          </div>
-          {comparisonFeatures.map((feature, idx) => (
-            <div key={idx} className="glass rounded-xl border border-white/5 px-4 py-3">
-              <p className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-bold mb-3">{feature.name}</p>
-              <div className="grid grid-cols-3 gap-2 text-center">
-                <div className="flex justify-center">
-                  {typeof feature.outdoors === 'boolean'
-                    ? (feature.outdoors ? <Check className="w-4 h-4 text-primary" /> : <span className="font-body text-sm text-muted-foreground">—</span>)
-                    : <span className="font-body text-xs text-muted-foreground">{feature.outdoors}</span>}
+              {image && (
+                <div className="aspect-[4/3] overflow-hidden mb-8">
+                  <ProgressiveImage src={image} alt={`${pkg.name} shoot by Aquila Oyange`} className="w-full h-full object-cover" />
                 </div>
-                <div className="flex justify-center">
-                  {typeof feature.events === 'boolean'
-                    ? (feature.events ? <Check className="w-4 h-4 text-primary" /> : <span className="font-body text-sm text-muted-foreground">—</span>)
-                    : <span className="font-body text-xs text-muted-foreground">{feature.events}</span>}
-                </div>
-                <div className="flex justify-center">
-                  {typeof feature.safaris === 'boolean'
-                    ? (feature.safaris ? <Check className="w-4 h-4 text-primary" /> : <span className="font-body text-sm text-muted-foreground">—</span>)
-                    : <span className="font-body text-xs text-foreground">{feature.safaris}</span>}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Desktop: full table */}
-        <div className="hidden md:block overflow-x-auto pb-6">
-          <div className="min-w-[800px] glass rounded-2xl overflow-hidden">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-primary/5 border-b border-white/10">
-                  <th className="p-6 font-display text-lg font-bold text-foreground">Features</th>
-                  <th className="p-6 font-display text-lg font-bold text-foreground">Outdoors</th>
-                  <th className="p-6 font-display text-lg font-bold text-foreground">Events</th>
-                  <th className="p-6 font-display text-lg font-bold text-primary">Hikes & Safaris</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5">
-                {comparisonFeatures.map((feature, idx) => (
-                  <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
-                    <td className="p-6 font-body text-sm font-medium text-foreground/80">{feature.name}</td>
-                    <td className="p-6 font-body text-sm text-muted-foreground">
-                      {typeof feature.outdoors === 'boolean' ? (feature.outdoors ? <Check className="w-4 h-4 text-primary" /> : "—") : feature.outdoors}
-                    </td>
-                    <td className="p-6 font-body text-sm text-muted-foreground">
-                      {typeof feature.events === 'boolean' ? (feature.events ? <Check className="w-4 h-4 text-primary" /> : "—") : feature.events}
-                    </td>
-                    <td className="p-6 font-body text-sm text-foreground">
-                      {typeof feature.safaris === 'boolean' ? (feature.safaris ? <Check className="w-4 h-4 text-primary" /> : "—") : feature.safaris}
-                    </td>
-                  </tr>
+              )}
+              <h3 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">{pkg.name}</h3>
+              <p className={`font-body text-xl mb-8 ${pkg.highlighted ? "text-primary" : "text-foreground/80"}`}>{pkg.price_label}</p>
+              <ul className="divide-y divide-border border-y border-border mb-10 flex-1">
+                {pkg.features.map((feature) => (
+                  <li key={feature} className="py-3 font-body text-foreground/80">
+                    {feature}
+                  </li>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </motion.div>
+              </ul>
+              <button
+                onClick={scrollToContact}
+                className={`group self-start inline-flex items-center gap-3 font-body text-sm px-7 py-3.5 rounded-full transition-colors duration-300 ${
+                  pkg.highlighted
+                    ? "bg-primary text-primary-foreground hover:bg-foreground hover:text-background"
+                    : "border border-border text-foreground hover:border-primary hover:text-primary"
+                }`}
+              >
+                Book this
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </motion.div>
+          );
+        })}
+      </div>
     </section>
   );
 };

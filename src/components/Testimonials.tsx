@@ -58,8 +58,7 @@ const Testimonials = () => {
         viewport={{ once: true }}
         className="mb-16 text-center relative z-10"
       >
-        <p className="font-body text-xs tracking-[0.4em] uppercase text-primary mb-4 font-bold">What They Say</p>
-        <h2 className="font-display text-5xl md:text-7xl font-black text-foreground tracking-tighter">Kind Words</h2>
+                <h2 className="font-display text-5xl md:text-7xl font-black text-foreground tracking-tighter">What clients say</h2>
       </motion.div>
 
       <div

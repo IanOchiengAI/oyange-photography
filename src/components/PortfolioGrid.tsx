@@ -31,6 +31,16 @@ const PortfolioGrid = () => {
     setVisibleCount(PAGE_SIZE);
   }, [activeFilter]);
 
+  // "See the work" links in Services open a specific album.
+  useEffect(() => {
+    const onFilter = (e: Event) => {
+      const album = (e as CustomEvent<string>).detail;
+      if (categories.includes(album)) setActiveFilter(album);
+    };
+    window.addEventListener("portfolio:filter", onFilter);
+    return () => window.removeEventListener("portfolio:filter", onFilter);
+  }, [categories]);
+
   return (
     <section id="portfolio" className="py-32 px-6 md:px-12 max-w-7xl mx-auto">
       <motion.div
@@ -38,21 +48,22 @@ const PortfolioGrid = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mb-16"
+        className="mb-10"
       >
-        <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-4">Portfolio</p>
-        <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground">Selected Works</h2>
+        <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground">Selected work</h2>
       </motion.div>
 
-      <div className="flex flex-wrap gap-3 mb-12">
+      <div className="flex flex-wrap gap-x-7 gap-y-3 mb-10 border-b border-border pb-4" role="tablist" aria-label="Filter by album">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveFilter(cat)}
-            className={`font-body text-xs tracking-widest uppercase px-5 py-2 rounded-full border transition-all duration-300 ${
+            role="tab"
+            aria-selected={activeFilter === cat}
+            className={`font-body text-base transition-colors duration-300 relative after:absolute after:left-0 after:right-0 after:-bottom-[17px] after:h-px after:transition-colors ${
               activeFilter === cat
-                ? "bg-primary text-primary-foreground border-primary"
-                : "border-border text-muted-foreground hover:border-primary hover:text-foreground"
+                ? "text-foreground after:bg-primary"
+                : "text-muted-foreground hover:text-foreground after:bg-transparent"
             }`}
           >
             {cat}
@@ -70,7 +81,7 @@ const PortfolioGrid = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.5, delay: (i % PAGE_SIZE) * 0.05 }}
-              className={`relative rounded-lg overflow-hidden group cursor-pointer ${item.span}`}
+              className={`relative overflow-hidden group cursor-pointer ${item.span}`}
               data-cursor-view
               role="button"
               tabIndex={0}
@@ -87,7 +98,7 @@ const PortfolioGrid = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
                 <div>
                   <h3 className="font-display text-base md:text-xl font-bold text-foreground">{item.title}</h3>
-                  <p className="font-body text-xs tracking-widest uppercase text-primary">{item.category}</p>
+                  <p className="font-body text-xs text-primary">{item.category}</p>
                 </div>
               </div>
             </motion.div>
@@ -99,7 +110,7 @@ const PortfolioGrid = () => {
         <div className="mt-12 flex justify-center">
           <button
             onClick={() => setVisibleCount((n) => n + PAGE_SIZE)}
-            className="font-body text-xs tracking-widest uppercase px-8 py-3 rounded-full border border-primary/40 text-foreground hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+            className="font-body text-sm px-8 py-3 rounded-full border border-primary/40 text-foreground hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
           >
             Show more ({filtered.length - visibleCount})
           </button>

@@ -76,10 +76,7 @@ const FeaturedWork = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-4">
-            Featured Work
-          </p>
-          <div className="h-[1px] w-16 bg-primary/40" />
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">Recent favourites</h2>
         </motion.div>
       </div>
 
@@ -109,7 +106,7 @@ const FeaturedWork = () => {
               style={{ width: `${CARD_WIDTH}px` }}
               data-cursor-view
             >
-              <div className="rounded-lg overflow-hidden aspect-[3/4] relative shadow-2xl">
+              <div className="overflow-hidden aspect-[3/4] relative">
                 <div className="w-full h-full transition-transform duration-700 ease-out group-hover:scale-105">
                   <ProgressiveImage
                     src={project.image}
@@ -126,7 +123,7 @@ const FeaturedWork = () => {
                   </h3>
                   <div className="flex items-center gap-3">
                     <span className="h-[1px] w-8 bg-primary" />
-                    <p className="font-body text-[10px] tracking-[0.4em] uppercase text-primary/90">
+                    <p className="font-body text-xs text-primary/90">
                       {project.category}
                     </p>
                     {project.year && (

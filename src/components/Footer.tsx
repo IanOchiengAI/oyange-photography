@@ -37,7 +37,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <h4 className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-6">Navigation</h4>
+            <h4 className="font-body text-sm text-primary mb-6">Navigation</h4>
             <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.label}>
@@ -58,7 +58,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <h4 className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-6">Follow</h4>
+            <h4 className="font-body text-sm text-primary mb-6">Follow</h4>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <a

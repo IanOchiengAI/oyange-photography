@@ -67,14 +67,14 @@ const Navbar = () => {
     <>
       <motion.nav
         initial={{ y: -100 }}
-        animate={{ y: scrolled ? 16 : 0 }}
-        transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         role="navigation"
         aria-label="Main Navigation"
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 mx-auto ${
-          scrolled 
-            ? "max-w-7xl left-6 right-6 top-0 rounded-2xl glass-strong shadow-2xl transition-all" 
-            : "top-0 left-0 right-0 glass"
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 border-b ${
+          scrolled
+            ? "bg-background/90 backdrop-blur-md border-border"
+            : "bg-transparent border-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
