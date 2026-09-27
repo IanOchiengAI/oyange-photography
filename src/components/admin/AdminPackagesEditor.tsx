@@ -3,6 +3,7 @@ import { usePackages, useUpsertPackage, useDeletePackage } from "@/hooks/usePort
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { Trash2, Plus, Save, GripVertical } from "lucide-react";
 import { toast } from "sonner";
 

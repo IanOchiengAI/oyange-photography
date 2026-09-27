@@ -8,7 +8,7 @@ import { Trash2, Plus } from "lucide-react";
 import { toast } from "sonner";
 import type { Tables } from "@/integrations/supabase/types";
 
-const iconOptions = ["Heart", "Camera", "Building2", "Sparkles", "Image", "Film", "Globe", "Users", "Star"];
+const iconOptions = ["Heart", "Camera", "Building2", "Sparkles", "Image", "Film", "Globe", "Users", "Star", "GraduationCap", "Mountain", "Package"];
 
 const AdminServicesEditor = () => {
   const { data: items, isLoading } = useServices();

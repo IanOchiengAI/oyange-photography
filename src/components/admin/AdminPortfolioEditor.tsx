@@ -80,7 +80,7 @@ const AdminPortfolioEditor = () => {
                   value={editing.category || ""} 
                   onChange={(e) => setEditing({ ...editing, category: e.target.value })} 
                   className="bg-background border-border text-foreground" 
-                  placeholder="e.g. Wedding, Portrait, Commercial" 
+                  placeholder="e.g. Portraits, Graduation, Adventure" 
                   aria-describedby="category-help"
                 />
                 <p id="category-help" className="text-[10px] text-muted-foreground">Photos with the same category will be grouped into one 'Album' filter.</p>

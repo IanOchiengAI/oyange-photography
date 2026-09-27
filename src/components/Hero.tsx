@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useContentValue } from "@/hooks/useSiteContent";
+import { useContentValue, useSiteContent } from "@/hooks/useSiteContent";
+import { heroPhoto } from "@/data/portfolio";
 import ProgressiveImage from "@/components/ProgressiveImage";
 import { ArrowRight } from "lucide-react";
 
@@ -16,15 +17,18 @@ const Hero = () => {
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  const headlineRaw = useContentValue("hero", "headline", "Capturing Light, Crafting Legacy");
+  const headlineRaw = useContentValue("hero", "headline", "Portraits, Events, Adventures");
   const headlineWords = headlineRaw.split(",").map((w) => w.trim()).filter(Boolean);
   const displayWords = headlineWords.map((w, i) => i < headlineWords.length - 1 ? w + "," : w);
 
   const location = useContentValue("hero", "location", "Nairobi, Kenya");
-  const subtitle = useContentValue("hero", "subtitle", "Premium photography for those who demand excellence");
+  const subtitle = useContentValue("hero", "subtitle", "Travel and portrait photographer based in Nairobi. I tell people's stories through portraits, graduations, events and the trails in between.");
+  const { isLoading } = useSiteContent();
+  // Fall back to a photo from the library only after the CMS has answered, so a
+  // CMS-set image never has a default flash in front of it (see commit 86ee61b).
+  const heroMid = useContentValue("hero", "hero_mid", "") || (isLoading ? "" : heroPhoto);
   const heroBg = useContentValue("hero", "hero_bg", "");
-  const heroMid = useContentValue("hero", "hero_mid", "");
-  const trustText = useContentValue("hero", "trust_text", "Trusted by 200+ clients across East Africa");
+  const trustText = useContentValue("hero", "trust_text", "Portraits · Graduations · Events · Hikes & Safaris");
 
   const scrollToContact = () => {
     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
@@ -33,7 +37,7 @@ const Hero = () => {
   return (
     <section id="hero" ref={ref} className="relative h-screen overflow-hidden flex items-center justify-center">
       <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
-        <div className="absolute inset-0 bg-background/40 z-10" />
+        <div className="absolute inset-0 bg-background/55 z-10" />
         {heroMid ? (
           <ProgressiveImage src={heroMid} alt="" className="w-full h-[120%] object-cover" loading="eager" />
         ) : (

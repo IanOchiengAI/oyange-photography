@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
 import { usePackages } from "@/hooks/usePortfolio";
 
+// From Aquila's own price list (his previous Pixieset site).
 const defaultPackages = [
   {
     name: "Outdoors",
@@ -12,24 +13,22 @@ const defaultPackages = [
   {
     name: "Events",
     price_label: "From KShs 6,000",
-    features: ["Full event coverage", "Nicely edited photos", "Online gallery"],
+    features: ["Coverage of your event", "Online gallery"],
     highlighted: false,
   },
   {
     name: "Hikes & Safaris",
     price_label: "From KShs 12,000",
-    features: ["Full-day coverage", "Unlimited photos", "Nicely edited photos", "Cinematic reel", "Online gallery"],
+    features: ["One full day", "Unlimited photos", "Edited photos", "Short reel", "Online gallery"],
     highlighted: true,
   },
 ];
 
 const comparisonFeatures = [
-  { name: "Session Duration", outdoors: "2 hours", events: "Full event", safaris: "Full day" },
-  { name: "Photos Delivered", outdoors: "20", events: "Custom", safaris: "Unlimited" },
-  { name: "Edited Photos", outdoors: true, events: true, safaris: true },
+  { name: "Session Length", outdoors: "2 hours", events: "Your event", safaris: "One full day" },
+  { name: "Photos", outdoors: "20", events: "Agreed per event", safaris: "Unlimited" },
+  { name: "Short Reel", outdoors: false, events: false, safaris: true },
   { name: "Online Gallery", outdoors: true, events: true, safaris: true },
-  { name: "Cinematic Reel", outdoors: false, events: false, safaris: true },
-  { name: "Day Coverage", outdoors: false, events: true, safaris: true },
 ];
 
 const Packages = () => {
@@ -49,7 +48,7 @@ const Packages = () => {
         className="mb-16 text-center"
       >
         <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-4">Investment</p>
-        <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground">Our Packages</h2>
+        <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground">Packages</h2>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -75,7 +74,7 @@ const Packages = () => {
             )}
             {pkg.highlighted && (
               <span className="absolute -top-4 left-10 bg-primary text-primary-foreground font-body text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full shadow-lg">
-                Most Popular
+                Full Day
               </span>
             )}
             <h3 className="font-display text-4xl font-black text-foreground tracking-tighter mb-1 mt-2">{pkg.name}</h3>
@@ -120,8 +119,8 @@ const Packages = () => {
         <div className="md:hidden space-y-3">
           <div className="grid grid-cols-3 gap-2 px-1 mb-4">
             <p className="text-center font-display text-xs font-bold text-foreground/70">Outdoors</p>
-            <p className="text-center font-display text-xs font-bold text-primary">Events</p>
-            <p className="text-center font-display text-xs font-bold text-foreground/70">Hikes & Safaris</p>
+            <p className="text-center font-display text-xs font-bold text-foreground/70">Events</p>
+            <p className="text-center font-display text-xs font-bold text-primary">Hikes & Safaris</p>
           </div>
           {comparisonFeatures.map((feature, idx) => (
             <div key={idx} className="glass rounded-xl border border-white/5 px-4 py-3">
@@ -135,12 +134,12 @@ const Packages = () => {
                 <div className="flex justify-center">
                   {typeof feature.events === 'boolean'
                     ? (feature.events ? <Check className="w-4 h-4 text-primary" /> : <span className="font-body text-sm text-muted-foreground">—</span>)
-                    : <span className="font-body text-xs text-foreground">{feature.events}</span>}
+                    : <span className="font-body text-xs text-muted-foreground">{feature.events}</span>}
                 </div>
                 <div className="flex justify-center">
                   {typeof feature.safaris === 'boolean'
                     ? (feature.safaris ? <Check className="w-4 h-4 text-primary" /> : <span className="font-body text-sm text-muted-foreground">—</span>)
-                    : <span className="font-body text-xs text-muted-foreground">{feature.safaris}</span>}
+                    : <span className="font-body text-xs text-foreground">{feature.safaris}</span>}
                 </div>
               </div>
             </div>
@@ -155,8 +154,8 @@ const Packages = () => {
                 <tr className="bg-primary/5 border-b border-white/10">
                   <th className="p-6 font-display text-lg font-bold text-foreground">Features</th>
                   <th className="p-6 font-display text-lg font-bold text-foreground">Outdoors</th>
-                  <th className="p-6 font-display text-lg font-bold text-primary">Events</th>
-                  <th className="p-6 font-display text-lg font-bold text-foreground">Hikes & Safaris</th>
+                  <th className="p-6 font-display text-lg font-bold text-foreground">Events</th>
+                  <th className="p-6 font-display text-lg font-bold text-primary">Hikes & Safaris</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
@@ -166,10 +165,10 @@ const Packages = () => {
                     <td className="p-6 font-body text-sm text-muted-foreground">
                       {typeof feature.outdoors === 'boolean' ? (feature.outdoors ? <Check className="w-4 h-4 text-primary" /> : "—") : feature.outdoors}
                     </td>
-                    <td className="p-6 font-body text-sm text-foreground">
+                    <td className="p-6 font-body text-sm text-muted-foreground">
                       {typeof feature.events === 'boolean' ? (feature.events ? <Check className="w-4 h-4 text-primary" /> : "—") : feature.events}
                     </td>
-                    <td className="p-6 font-body text-sm text-muted-foreground">
+                    <td className="p-6 font-body text-sm text-foreground">
                       {typeof feature.safaris === 'boolean' ? (feature.safaris ? <Check className="w-4 h-4 text-primary" /> : "—") : feature.safaris}
                     </td>
                   </tr>

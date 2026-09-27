@@ -43,7 +43,7 @@ const InstagramCTA = () => {
               <span className="text-primary italic font-light">Every Day</span>
             </h2>
             <p className="font-body text-muted-foreground max-w-md leading-relaxed">
-              New shoots, behind-the-scenes moments, and work fresh from the edit — follow us on Instagram to stay connected.
+              New shoots, behind-the-scenes moments and work fresh from the edit. Follow along on Instagram.
             </p>
           </motion.div>
 

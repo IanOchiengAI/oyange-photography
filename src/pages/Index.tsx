@@ -33,10 +33,10 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Oyange Photography | Premium Motion & Stills</title>
-        <meta name="description" content="Professional photography and videography portfolio showcasing premium weddings, commercial work, and portraits." />
-        <meta property="og:title" content="Oyange Photography | Premium Motion & Stills" />
-        <meta property="og:description" content="Professional photography and videography portfolio showcasing premium weddings, commercial work, and portraits." />
+        <title>Oyange Photography | Aquila Oyange, Photographer in Nairobi</title>
+        <meta name="description" content="Aquila Oyange is a travel and portrait photographer in Nairobi, Kenya. Portraits, graduations, couples, events, product shoots, hikes and safaris. Sessions from KShs 5,000." />
+        <meta property="og:title" content="Oyange Photography | Aquila Oyange, Photographer in Nairobi" />
+        <meta property="og:description" content="Portraits, graduations, events, hikes and safaris in Nairobi, Kenya. Sessions from KShs 5,000." />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={ogImage} />
         <meta property="og:image:width" content="512" />

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 const WhatsAppButton = () => {
   const [showTooltip, setShowTooltip] = useState(false);
   const phone = "254717393576";
-  const message = encodeURIComponent("Hello Oyange Photography! I'm interested in your photography services.");
+  const message = encodeURIComponent("Hi Aquila! I found your website and I'm interested in a photo shoot.");
   const url = `https://wa.me/${phone}?text=${message}`;
 
   useEffect(() => {

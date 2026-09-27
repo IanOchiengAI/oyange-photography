@@ -3,10 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Oyange Photography | Premium Photography in Nairobi, Kenya</title>
-    <meta name="description" content="Oyange Photography — Nairobi's premier photography studio. Weddings, portraits, commercial, and fashion photography crafted with cinematic excellence." />
-    <meta name="author" content="Oyange Photography" />
-    <link rel="preload" as="image" href="/src/assets/hero-mid.jpg" type="image/jpeg" />
+    <title>Oyange Photography | Aquila Oyange, Photographer in Nairobi</title>
+    <meta name="description" content="Aquila Oyange is a travel and portrait photographer in Nairobi, Kenya. Portraits, graduations, couples, events, product shoots, hikes and safaris. Sessions from KShs 5,000." />
+    <meta name="author" content="Aquila Oyange" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -20,28 +19,20 @@
     <!-- Supabase preconnect — eliminates DNS + TLS cold-start on first DB fetch -->
     <link rel="preconnect" href="https://coqyinlfghwbmbwhymeo.supabase.co" />
 
-    <meta property="og:title" content="Oyange Photography | Nairobi, Kenya" />
-    <meta property="og:description" content="Premium photography for those who demand excellence. Weddings, portraits, commercial & fashion photography in Nairobi." />
+    <meta property="og:title" content="Oyange Photography | Aquila Oyange, Photographer in Nairobi" />
+    <meta property="og:description" content="Portraits, graduations, events, hikes and safaris in Nairobi, Kenya. Sessions from KShs 5,000." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://oyangephotography.co.ke" />
-    <meta property="og:image" content="https://oyangephotography.co.ke/og-image.jpg" />
+    <meta property="og:url" content="https://oyange-photography.vercel.app" />
+    <meta property="og:image" content="https://oyange-photography.vercel.app/og-image.jpg" />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Oyange Photography | Nairobi, Kenya" />
-    <meta name="twitter:description" content="Premium photography for those who demand excellence. Weddings, portraits, commercial & fashion photography." />
-    <meta name="twitter:image" content="https://oyangephotography.co.ke/og-image.jpg" />
-    <link rel="canonical" href="https://oyangephotography.co.ke" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Oyange Photography | Aquila Oyange, Photographer in Nairobi" />
+    <meta name="twitter:description" content="Portraits, graduations, events, hikes and safaris in Nairobi, Kenya. Sessions from KShs 5,000." />
+    <meta name="twitter:image" content="https://oyange-photography.vercel.app/og-image.jpg" />
+    <link rel="canonical" href="https://oyange-photography.vercel.app" />
 
-    <!-- Google Analytics 4 — REPLACE G-XXXXXXXXXX with your real Measurement ID from analytics.google.com -->
-    <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
 
     <script type="application/ld+json">
     {
@@ -49,42 +40,38 @@
       "@graph": [
         {
           "@type": "Person",
-          "@id": "https://oyangephotography.co.ke/#person",
-          "name": "Oyange",
-          "alternateName": "Oyange Photography",
-          "url": "https://oyangephotography.co.ke",
-          "image": {
-            "@type": "ImageObject",
-            "url": "https://oyangephotography.co.ke/og-image.jpg"
-          },
-          "description": "Premium cinematic photographer in Nairobi, Kenya specializing in high-end weddings, editorial portraits, and commercial fashion.",
-          "knowsAbout": ["Photography", "Cinematography", "Lighting Artistry", "Visual Storytelling", "Post-production"],
-          "sameAs": [
-            "https://www.instagram.com/oyange_/",
-            "https://linktr.ee/0yange"
-          ]
+          "@id": "https://oyange-photography.vercel.app/#person",
+          "name": "Aquila Oyange",
+          "jobTitle": "Photographer and photo editor",
+          "url": "https://oyange-photography.vercel.app",
+          "image": "https://oyange-photography.vercel.app/og-image.jpg",
+          "address": { "@type": "PostalAddress", "addressLocality": "Nairobi", "addressCountry": "KE" },
+          "alumniOf": { "@type": "CollegeOrUniversity", "name": "Jomo Kenyatta University of Agriculture and Technology" },
+          "knowsAbout": ["Portrait photography", "Graduation photography", "Event photography", "Travel photography", "Photo editing"],
+          "sameAs": ["https://www.instagram.com/oyange_/", "https://linktr.ee/0yange"]
         },
         {
           "@type": "ProfessionalService",
-          "@id": "https://oyangephotography.co.ke/#service",
+          "@id": "https://oyange-photography.vercel.app/#business",
           "name": "Oyange Photography",
-          "url": "https://oyangephotography.co.ke",
+          "url": "https://oyange-photography.vercel.app",
+          "image": "https://oyange-photography.vercel.app/og-image.jpg",
+          "description": "Aquila Oyange is a travel and portrait photographer in Nairobi, Kenya. Portraits, graduations, couples, events, product shoots, hikes and safaris. Sessions from KShs 5,000.",
           "telephone": "+254717393576",
-          "priceRange": "$$$",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Nairobi",
-            "addressRegion": "Nairobi",
-            "addressCountry": "KE"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": -1.2921,
-            "longitude": 36.8219
-          },
-          "image": "https://oyangephotography.co.ke/og-image.jpg",
-          "memberOf": { "@id": "https://oyangephotography.co.ke/#person" },
-          "serviceType": ["Wedding Photography", "Portrait Photography", "Fashion Photography", "Commercial Photography"]
+          "priceRange": "KES 5,000 - 12,000+",
+          "founder": { "@id": "https://oyange-photography.vercel.app/#person" },
+          "address": { "@type": "PostalAddress", "addressLocality": "Nairobi", "addressRegion": "Nairobi", "addressCountry": "KE" },
+          "areaServed": "Kenya",
+          "sameAs": ["https://www.instagram.com/oyange_/", "https://linktr.ee/0yange"],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Photography packages",
+            "itemListElement": [
+              { "@type": "Offer", "name": "Outdoors", "description": "2-hour session, 20 edited photos, online gallery", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 5000, "priceCurrency": "KES" } },
+              { "@type": "Offer", "name": "Events", "description": "Event coverage with an online gallery", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 6000, "priceCurrency": "KES" } },
+              { "@type": "Offer", "name": "Hikes & Safaris", "description": "One full day, unlimited photos, edited photos, short reel, online gallery", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 12000, "priceCurrency": "KES" } }
+            ]
+          }
         }
       ]
     }

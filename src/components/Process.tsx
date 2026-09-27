@@ -5,26 +5,26 @@ const steps = [
   {
     number: "01",
     icon: MessageCircle,
-    title: "Consultation",
-    description: "We start with a conversation — your vision, your story, your goals. No pressure, just clarity. This shapes everything that follows.",
+    title: "Say Hello",
+    description: "Send me a message on WhatsApp or through the form below. Tell me what you have in mind and the date you're thinking of.",
   },
   {
     number: "02",
     icon: Lightbulb,
-    title: "Creative Direction",
-    description: "We develop a detailed mood board, location scouting plan, and shot list. You'll know exactly what to expect before we ever pick up a camera.",
+    title: "Plan the Shoot",
+    description: "We agree on the package, the location and the time, whether that's a studio, your campus, your event venue or a trail.",
   },
   {
     number: "03",
     icon: Camera,
     title: "The Shoot",
-    description: "On the day, we handle every detail so you can simply be present. Our direction is relaxed, our eye is always on. This is where the magic happens.",
+    description: "I guide you through it so you can relax and be yourself. Real moments make the best pictures.",
   },
   {
     number: "04",
     icon: ImageIcon,
-    title: "Gallery Delivery",
-    description: "Every image is hand-edited to match our signature aesthetic. Your private online gallery is delivered within the agreed timeframe — ready to treasure.",
+    title: "Your Gallery",
+    description: "I edit the photos myself and deliver them in an online gallery you can download and share.",
   },
 ];
 
@@ -38,8 +38,8 @@ const Process = () => {
         transition={{ duration: 0.6 }}
         className="mb-20 text-center"
       >
-        <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-4">The Experience</p>
-        <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground">How We Work Together</h2>
+        <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-4">How It Works</p>
+        <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground">From Hello to Gallery</h2>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative">

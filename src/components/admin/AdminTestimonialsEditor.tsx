@@ -75,7 +75,7 @@ const AdminTestimonialsEditor = () => {
                 value={editing.client_title || ""} 
                 onChange={(e) => setEditing({ ...editing, client_title: e.target.value })} 
                 className="bg-background border-border text-foreground" 
-                placeholder="e.g. Wedding Clients"
+                placeholder="e.g. Graduation client"
               />
             </div>
           </div>

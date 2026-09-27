@@ -11,7 +11,7 @@ const Contact = () => {
 
   const headingLine1 = useContentValue("contact", "heading_line1", "Let's Create");
   const headingLine2 = useContentValue("contact", "heading_line2", "Together");
-  const address = useContentValue("contact", "address", "Westlands, Nairobi, Kenya");
+  const address = useContentValue("contact", "address", "Nairobi, Kenya");
   const email = useContentValue("contact", "email", "martinaquila5@gmail.com");
   const phone = useContentValue("contact", "phone", "+254 717 393 576");
 
@@ -92,7 +92,7 @@ const Contact = () => {
                 <MapPin className="w-5 h-5 text-primary group-hover:text-black transition-colors duration-500" strokeWidth={1.5} />
               </div>
               <div className="pt-2">
-                <p className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-bold mb-1">Office</p>
+                <p className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-bold mb-1">Based in</p>
                 <p className="font-body text-foreground/80">{address}</p>
               </div>
             </div>
@@ -103,7 +103,7 @@ const Contact = () => {
               </div>
               <div className="pt-2">
                 <p className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-bold mb-1">Email</p>
-                <p className="font-body text-foreground/80">{email}</p>
+                <a href={`mailto:${email}`} className="font-body text-foreground/80 hover:text-primary transition-colors break-all">{email}</a>
               </div>
             </div>
 
@@ -113,7 +113,7 @@ const Contact = () => {
               </div>
               <div className="pt-2">
                 <p className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-bold mb-1">Phone</p>
-                <p className="font-body text-foreground/80">{phone}</p>
+                <a href={`tel:${phone.replace(/\s/g, "")}`} className="font-body text-foreground/80 hover:text-primary transition-colors">{phone}</a>
               </div>
             </div>
           </div>
@@ -143,13 +143,13 @@ const Contact = () => {
                 </motion.div>
                 <h3 className="font-display text-4xl font-black text-foreground tracking-tighter">Inquiry Received</h3>
                 <p className="font-body text-foreground/50 mt-4 leading-relaxed">
-                  Thank you for reaching out. We'll review your project details and get back to you within 24 hours.
+                  Thank you for reaching out. I'll read your message and get back to you as soon as I can.
                 </p>
                 <div className="h-[1px] w-16 bg-primary/30 mx-auto my-6" />
                 <p className="text-sm text-foreground/60 mb-6 font-body">Want a faster response?</p>
                 <motion.a
                   href={`https://wa.me/254717393576?text=${encodeURIComponent(
-                    `Hi Oyange Photography! I just submitted an inquiry for a ${formData.project_type || "photography"} project and wanted to follow up.`
+                    `Hi Aquila! I just sent an inquiry through your website for a ${formData.project_type || "photography"} project and wanted to follow up.`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -194,6 +194,7 @@ const Contact = () => {
                     <option value="Graduation" className="bg-background">Graduation</option>
                     <option value="Events" className="bg-background">Events</option>
                     <option value="Hikes & Safaris" className="bg-background">Hikes & Safaris</option>
+                    <option value="Product" className="bg-background">Product</option>
                     <option value="Other" className="bg-background">Other</option>
                   </select>
                 </div>
@@ -207,7 +208,7 @@ const Contact = () => {
                     disabled={submitting} 
                     className="group w-full flex items-center justify-center gap-4 font-body text-xs font-bold tracking-[0.3em] uppercase bg-primary text-black px-10 py-5 rounded-full hover:bg-white hover:shadow-[0_20px_40px_-10px_rgba(255,255,255,0.2)] transition-all duration-500 disabled:opacity-50 mt-4 shadow-xl"
                   >
-                    {submitting ? "Processing..." : "Initiate Project"}
+                    {submitting ? "Sending..." : "Send Message"}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
                   </button>
                 </div>

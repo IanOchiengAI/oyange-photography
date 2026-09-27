@@ -27,7 +27,7 @@ const Footer = () => {
           >
             <h3 className="font-display text-2xl font-bold text-foreground mb-4">OYANGE</h3>
             <p className="font-body text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Premium photography studio based in Nairobi, Kenya. Capturing light, crafting legacy.
+              Aquila Oyange. Travel, portrait and event photographer based in Nairobi, Kenya.
             </p>
           </motion.div>
 
@@ -58,7 +58,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <h4 className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-6">Follow Us</h4>
+            <h4 className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-6">Follow</h4>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <a

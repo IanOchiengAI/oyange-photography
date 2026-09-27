@@ -16,24 +16,25 @@ const About = () => {
   const accentY    = useTransform(scrollYProgress, [0, 1], ["15%", "-15%"]);
   const textY      = useTransform(scrollYProgress, [0, 1], ["4%", "-4%"]);
 
-  const headingLine1 = useContentValue("about", "heading_line1", "Every Frame");
-  const headingLine2 = useContentValue("about", "heading_line2", "Tells a Story");
-  const paragraph1   = useContentValue("about", "paragraph1", "Based in the heart of Nairobi, Oyange Photography has been crafting visual narratives for over a decade. We believe that every moment holds extraordinary beauty — it just needs the right eye to capture it.");
-  const paragraph2   = useContentValue("about", "paragraph2", "From intimate weddings in the Rift Valley to high-end commercial campaigns, we bring cinematic vision and technical mastery to every project.");
-  const stat1Num     = useContentValue("about", "stat1_num", "200+");
-  const stat1Label   = useContentValue("about", "stat1_label", "Projects");
-  const stat2Num     = useContentValue("about", "stat2_num", "12");
-  const stat2Label   = useContentValue("about", "stat2_label", "Years");
-  const stat3Num     = useContentValue("about", "stat3_num", "50+");
-  const stat3Label   = useContentValue("about", "stat3_label", "Awards");
+  const headingLine1 = useContentValue("about", "heading_line1", "This is");
+  const headingLine2 = useContentValue("about", "heading_line2", "my Story");
+  const paragraph1   = useContentValue("about", "paragraph1", "My name is Aquila Oyange. I'm a photographer and photo editor based in Nairobi, Kenya, and I shoot portraits, events and travel.");
+  const paragraph2   = useContentValue("about", "paragraph2", "I'm driven by impact storytelling. Whether it's a graduate on the campus lawn, a policy launch in a packed hall or a hiking group at Elephant Hill summit, every shoot is a chance to document a story worth keeping.");
+  const stat1Num     = useContentValue("about", "stat1_num", "");
+  const stat1Label   = useContentValue("about", "stat1_label", "");
+  const stat2Num     = useContentValue("about", "stat2_num", "");
+  const stat2Label   = useContentValue("about", "stat2_label", "");
+  const stat3Num     = useContentValue("about", "stat3_num", "");
+  const stat3Label   = useContentValue("about", "stat3_label", "");
   const aboutImg1    = useContentValue("about", "about_img1", "");
   const aboutImg2    = useContentValue("about", "about_img2", "");
 
+  // Stats only show once real numbers are entered in the admin; no invented defaults.
   const stats = [
     { num: stat1Num, label: stat1Label },
     { num: stat2Num, label: stat2Label },
     { num: stat3Num, label: stat3Label },
-  ];
+  ].filter((s) => s.num && s.label);
 
   return (
     <section id="about" ref={ref} className="py-32 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
@@ -65,6 +66,7 @@ const About = () => {
           </div>
 
           {/* Stats — horizontal strip */}
+          {stats.length > 0 && (
           <div className="mt-14 flex items-center gap-10 border-t border-border pt-10">
             {stats.map((stat, i) => (
               <motion.div
@@ -80,6 +82,7 @@ const About = () => {
               </motion.div>
             ))}
           </div>
+          )}
         </motion.div>
 
         {/* ── Right: portrait-dominant image composition ── */}
@@ -102,7 +105,7 @@ const About = () => {
           >
             <ProgressiveImage
               src={aboutImg2 || portfolio2Default}
-              alt="Oyange — photographer"
+              alt="Aquila Oyange, photographer"
               className="w-full h-full object-cover object-top"
             />
             {/* Subtle gradient at base so it bleeds into the background */}
@@ -120,7 +123,7 @@ const About = () => {
           >
             <ProgressiveImage
               src={aboutImg1 || aboutImgDefault}
-              alt="Oyange Photography — behind the lens"
+              alt="From Aquila Oyange's hiking work"
               className="w-full h-full object-cover"
             />
           </motion.div>

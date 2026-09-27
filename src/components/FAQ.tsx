@@ -2,38 +2,31 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
 
+// Only answers the site can stand behind. Add more (delivery times, deposits, payment) once Aquila confirms them.
 const faqs = [
   {
-    q: "How far in advance should I book?",
-    a: "For weddings, we recommend 6–12 months in advance, especially for peak season (December–January and July–August). For portraits and commercial shoots, 4–6 weeks is usually enough. That said, reach out regardless — we'll always do our best to accommodate you.",
+    q: "How do I book a session?",
+    a: "Send me a message on WhatsApp or fill in the form at the bottom of this page with the kind of shoot and the date you have in mind. I'll confirm availability and the details from there.",
+  },
+  {
+    q: "How much does a shoot cost?",
+    a: "Outdoor sessions start from KShs 5,000, events from KShs 6,000, and a full day of hikes and safaris from KShs 12,000. The exact price depends on what you need, so tell me about your shoot and I'll quote you.",
   },
   {
     q: "Do you travel outside Nairobi?",
-    a: "Absolutely. We regularly shoot across Kenya — Mombasa, Kisumu, the Rift Valley, Masai Mara, and beyond. International travel is available for destination weddings and editorial campaigns. Travel logistics are discussed during consultation.",
+    a: "Yes. Hikes and safaris are a big part of my work, and I'm happy to travel for other shoots too. Travel costs are agreed before the day.",
   },
   {
-    q: "How long until we receive our photos?",
-    a: "Portrait sessions are typically delivered within 7–10 working days. Weddings and full-day events take 3–5 weeks. We hand-edit every image to our signature standard — we don't rush quality. Rush delivery may be arranged for an additional fee.",
+    q: "How will I get my photos?",
+    a: "Every package includes an online gallery where you can view, download and share your edited photos.",
   },
   {
-    q: "What happens if you're sick on our wedding day?",
-    a: "In the unlikely event of an emergency, we have a trusted network of professional photographers we partner with. You will always have coverage. We've never missed a wedding in over a decade, and we intend to keep it that way.",
+    q: "Can you photograph our organisation's event?",
+    a: "Yes. I cover launches, conferences, panels and performances, from speakers at the podium to the conversations in between.",
   },
   {
-    q: "Do you shoot in RAW? Can I have the RAW files?",
-    a: "Yes, we shoot entirely in RAW format for maximum quality and editing latitude. The delivered gallery contains fully edited JPEGs. RAW files are not included as standard — they represent incomplete work — but can be licensed separately if needed.",
-  },
-  {
-    q: "What is your payment and deposit structure?",
-    a: "We require a 30% non-refundable deposit to secure your date, with the balance due 7 days before the shoot. We accept M-Pesa, bank transfer, and major cards. All bookings are confirmed with a signed contract.",
-  },
-  {
-    q: "Can we order prints through you?",
-    a: "Yes. We partner with premium fine art print labs for canvas, acrylic, and archival paper prints. Print packages can be added to any booking, or ordered separately after delivery. We handle everything — framing options are available too.",
-  },
-  {
-    q: "Do you offer videography as well?",
-    a: "Yes. We offer cinematic highlight films, full ceremony edits, and short-form social content. Video can be booked as a standalone service or bundled with photography for a cohesive visual story of your event.",
+    q: "Do you shoot graduations?",
+    a: "Yes, graduations are one of my favourite shoots. We can do portraits of you in your gown around campus and photos with your family and friends.",
   },
 ];
 
@@ -99,7 +92,7 @@ const FAQ = () => {
             <span className="text-primary italic font-light">Answered</span>
           </h2>
           <p className="font-body text-muted-foreground leading-relaxed">
-            Everything you need to know before we work together. Don't see your question?{" "}
+            The things people usually ask first. Don't see your question?{" "}
             <a href="#contact" className="text-primary hover:underline transition-colors">
               Just ask.
             </a>

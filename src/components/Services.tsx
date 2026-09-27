@@ -1,19 +1,19 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Camera, Heart, Building2, Sparkles, Image, Film, Globe, Users, Star } from "lucide-react";
+import { Camera, Heart, Building2, Sparkles, Image, Film, Globe, Users, Star, GraduationCap, Mountain, Package } from "lucide-react";
 import { useServices } from "@/hooks/usePortfolio";
 
 const iconMap: Record<string, React.ComponentType<any>> = {
-  Heart, Camera, Building2, Sparkles, Image, Film, Globe, Users, Star,
+  Heart, Camera, Building2, Sparkles, Image, Film, Globe, Users, Star, GraduationCap, Mountain, Package,
 };
 
 const defaultServices = [
-  { icon_name: "Heart", title: "Weddings", description: "Timeless imagery for your most cherished day" },
-  { icon_name: "Camera", title: "Portraits", description: "Editorial and personal portraits that reveal character" },
-  { icon_name: "Building2", title: "Commercial", description: "Elevate your brand with cinematic visual content" },
-  { icon_name: "Sparkles", title: "Fashion", description: "High-end editorial and lookbook photography" },
-  { icon_name: "Image", title: "Product", description: "Stunning product imagery that drives conversion" },
-  { icon_name: "Film", title: "Film & Video", description: "Motion content that captivates and inspires" },
+  { icon_name: "Camera", title: "Portraits", description: "Studio and outdoor portraits, from professional headshots to creative personal sessions." },
+  { icon_name: "GraduationCap", title: "Graduation", description: "Your big day on campus, in cap and gown, with the people who got you there." },
+  { icon_name: "Heart", title: "Couples", description: "Relaxed sessions for two, by the water, in the garden or wherever feels like you." },
+  { icon_name: "Users", title: "Events", description: "Launches, conferences, performances and celebrations, covered as they happen." },
+  { icon_name: "Mountain", title: "Hikes & Safaris", description: "A full day on the trail with your group, from the briefing to the summit." },
+  { icon_name: "Package", title: "Product", description: "Clean, well-lit product photos for your shop, menu or social pages." },
 ];
 
 const TiltCard = ({ service }: { service: { icon_name: string; title: string; description: string } }) => {
@@ -87,8 +87,8 @@ const Services = () => {
         viewport={{ once: true }}
         className="mb-16 text-center"
       >
-        <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-4">What We Do</p>
-        <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground">Our Services</h2>
+        <p className="font-body text-xs tracking-[0.3em] uppercase text-primary mb-4">What I Shoot</p>
+        <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground">Services</h2>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

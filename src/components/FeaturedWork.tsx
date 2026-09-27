@@ -1,16 +1,10 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
 import { useFeaturedProjects } from "@/hooks/usePortfolio";
-import portfolio1 from "@/assets/portfolio-1.jpg";
-import portfolio4 from "@/assets/portfolio-4.jpg";
-import portfolio6 from "@/assets/portfolio-6.jpg";
 import ProgressiveImage from "@/components/ProgressiveImage";
+import { featuredPhotos } from "@/data/portfolio";
 
-const defaultProjects = [
-  { image: portfolio1, title: "Eternal Bonds", category: "Wedding", year: "2024" },
-  { image: portfolio4, title: "Golden Horizons", category: "Landscape", year: "2024" },
-  { image: portfolio6, title: "Ethereal Grace", category: "Fashion", year: "2023" },
-];
+const defaultProjects = featuredPhotos.map((p) => ({ image: p.image, title: p.title, category: p.category, year: "" }));
 
 const CARD_WIDTH = 380;   // px per card
 const CARD_GAP = 24;      // gap between cards
@@ -127,7 +121,7 @@ const FeaturedWork = () => {
 
                 {/* Overlay content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="font-display text-2xl font-black text-white tracking-tight leading-none mb-3">
+                  <h3 className="font-display text-xl md:text-2xl font-black text-white tracking-tight leading-tight mb-3">
                     {project.title}
                   </h3>
                   <div className="flex items-center gap-3">
@@ -135,9 +129,11 @@ const FeaturedWork = () => {
                     <p className="font-body text-[10px] tracking-[0.4em] uppercase text-primary/90">
                       {project.category}
                     </p>
-                    <span className="font-body text-xs text-white/30 ml-auto italic">
-                      {project.year}
-                    </span>
+                    {project.year && (
+                      <span className="font-body text-xs text-white/30 ml-auto italic">
+                        {project.year}
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
