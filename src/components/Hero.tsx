@@ -73,7 +73,7 @@ const Hero = () => {
                   duration: 1, 
                   ease: [0.16, 1, 0.3, 1] 
                 }}
-                className={`inline-block ${i >= displayWords.length - 2 ? "text-gradient italic" : "text-foreground"}`}
+                className="inline-block text-foreground"
               >
                 {word}
               </motion.span>
@@ -94,7 +94,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.8, duration: 0.8 }}
-          className="font-body text-xs tracking-[0.2em] uppercase text-muted-foreground/60 mb-10"
+          className="font-body text-sm text-muted-foreground mb-10"
         >
           {trustText}
         </motion.p>

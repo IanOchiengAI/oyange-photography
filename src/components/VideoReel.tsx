@@ -38,16 +38,6 @@ const VideoReel = () => {
       </div>
 
       <div className="relative z-10 text-center flex flex-col items-center px-6 w-full max-w-5xl mx-auto">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="font-body text-xs tracking-[0.4em] uppercase text-primary mb-6 font-bold"
-        >
-          Motion Work
-        </motion.p>
-
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +45,7 @@ const VideoReel = () => {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="font-display text-5xl md:text-7xl font-black text-foreground tracking-tighter mb-16"
         >
-          Where Stills Meet Cinema
+          The reel
         </motion.h2>
 
         <AnimatePresence mode="wait">
@@ -66,7 +56,7 @@ const VideoReel = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.5 }}
-              className="w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10"
+              className="w-full aspect-video overflow-hidden"
             >
               <iframe
                 src={embedUrl}
@@ -87,7 +77,7 @@ const VideoReel = () => {
             >
               <button
                 onClick={() => setIsPlaying(true)}
-                className="w-20 h-20 bg-primary rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-500 shadow-[0_0_40px_-10px_hsl(var(--primary)/0.5)] mb-6 group"
+                className="w-20 h-20 bg-primary rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-500 mb-6 group"
                 aria-label="Play showreel"
               >
                 <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[16px] border-l-primary-foreground border-b-[10px] border-b-transparent ml-1 group-hover:scale-110 transition-transform duration-300" />

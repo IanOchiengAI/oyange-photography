@@ -15,7 +15,7 @@ const INSTAGRAM_HANDLE = "@oyange_";
 const InstagramCTA = () => {
   return (
     <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
-      <div className="glass rounded-3xl p-10 md:p-16 border border-white/5 relative overflow-hidden">
+      <div className="relative overflow-hidden border-y border-border py-14 md:py-20">
         {/* Background image mosaic — decorative */}
         <div className="absolute inset-0 grid grid-cols-6 opacity-[0.06] pointer-events-none" aria-hidden="true">
           {previewImages.map((img, i) => (
@@ -32,15 +32,8 @@ const InstagramCTA = () => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-center md:text-left"
           >
-            <div className="flex items-center gap-3 mb-6 justify-center md:justify-start">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] flex items-center justify-center shrink-0">
-                <Instagram className="w-5 h-5 text-white" />
-              </div>
-              <span className="font-body text-xs tracking-[0.3em] uppercase text-primary font-bold">Follow Along</span>
-            </div>
-            <h2 className="font-display text-4xl md:text-6xl font-black text-foreground tracking-tighter leading-[1.05] mb-4">
-              Behind the Lens,<br />
-              <span className="text-primary italic font-light">Every Day</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground leading-[1.05] mb-4">
+              More on Instagram
             </h2>
             <p className="font-body text-muted-foreground max-w-md leading-relaxed">
               New shoots, behind-the-scenes moments and work fresh from the edit. Follow along on Instagram.
@@ -61,11 +54,12 @@ const InstagramCTA = () => {
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 font-body text-sm tracking-widest uppercase bg-primary text-primary-foreground px-8 py-4 rounded-full hover:bg-foreground transition-colors duration-300"
+              className="group inline-flex items-center gap-3 font-body text-sm bg-primary text-primary-foreground px-8 py-4 rounded-full hover:bg-foreground transition-colors duration-300"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
-              Follow on Instagram
+              <Instagram className="w-4 h-4" />
+              Follow
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </motion.a>
           </motion.div>

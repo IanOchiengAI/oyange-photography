@@ -23,7 +23,7 @@ Technical overview and development guide for the Oyange Photography website.
 - **Typography**:
   - Headings: `Playfair Display` (Serif, elegant, cinematic)
   - Body: `Inter` (Sans-serif, clean, readable)
-- **Vibe**: High-end, cinematic, premium editorial.
+- **Vibe**: A printed photo book: his photos, serif headings, hairline rules. Full rules and the banned AI patterns are in `DESIGN.md`.
 
 ## 📁 Project Structure
 - `src/components/`: UI components (Hero, Portfolio, WhatsAppButton, MobileBookCTA, etc.)

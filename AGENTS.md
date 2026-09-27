@@ -8,7 +8,7 @@
 3. **The Orbit Engineer**: Manages SEO, performance audits, and Vercel/Supabase deployment.
 
 ## 🎯 Project-Specific Directives
-1. **Visual First**: Every feature must support the cinematic brand. Use `Playfair Display` for headlines and maintain the `gold-underline` and `glass` CSS patterns.
+1. **Visual First**: Read `DESIGN.md` before touching any public page. The photos are the design; no icon-card grids, glass panels or eyebrow labels (they read as AI-generated).
 2. **Performance is Quality**: High-res images are the product. Always use `ProgressiveImage`. Monitor bundle size for public routes.
 3. **Admin Integrity**: The admin dashboard is for a non-technical photographer. Keep UI simple, robust, and handle image uploads with feedback (`useImageUpload`).
 4. **Cinematic Motion**: Every section should have a `framer-motion` entry. Use the established `ease: [0.16, 1, 0.3, 1]` for "premium" feel.

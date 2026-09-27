@@ -48,16 +48,10 @@ const About = () => {
           viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: true }}
-            className="h-[1px] w-20 bg-primary mb-8 origin-left"
-          />
           <h2 className="font-display text-5xl md:text-7xl font-black text-foreground mb-8 leading-[1.1] tracking-tighter">
             {headingLine1}
             <br />
-            <span className="text-primary/80 italic font-light">{headingLine2}</span>
+            <span className="text-primary italic font-normal">{headingLine2}</span>
           </h2>
 
           <div className="space-y-6 font-body text-foreground/70 text-lg leading-relaxed max-w-xl">
@@ -88,15 +82,9 @@ const About = () => {
         {/* ── Right: portrait-dominant image composition ── */}
         <div className="relative h-[620px] md:h-[720px]">
 
-          {/* Decorative gold offset frame — sits behind the portrait */}
-          <div
-            className="absolute top-6 right-0 w-[78%] h-full rounded-2xl border border-primary/25 translate-x-3"
-            aria-hidden="true"
-          />
-
           {/* Portrait — dominant, tall, right-anchored */}
           <motion.div
-            className="absolute top-0 right-0 w-[78%] h-full rounded-2xl overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)]"
+            className="absolute top-0 right-0 w-[78%] h-full overflow-hidden"
             style={{ y: portraitY }}
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -114,7 +102,7 @@ const About = () => {
 
           {/* Accent landscape — small card, bottom-left, overlapping */}
           <motion.div
-            className="absolute bottom-10 left-0 w-[46%] h-[210px] rounded-xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] border border-white/8 z-10"
+            className="absolute bottom-10 left-0 w-[46%] h-[210px] overflow-hidden border-4 border-background z-10"
             style={{ y: accentY }}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -128,16 +116,6 @@ const About = () => {
             />
           </motion.div>
 
-          {/* Gold dot accent — top-left corner decoration */}
-          <motion.div
-            className="absolute top-4 left-6 z-20"
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="w-3 h-3 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary)/0.6)]" />
-          </motion.div>
         </div>
 
       </div>
